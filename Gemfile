@@ -7,6 +7,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 
 group :test do
-  gem 'cucumber-rails', require: false
+  gem 'rspec-rails'
+  gem 'cucumber-rails'
   gem 'database_cleaner'
 end
