@@ -2,7 +2,7 @@ Feature: new user visits site
 
   As a new user
   I want to visit the initiative site
-  to see what I can do there
+  To see what I can do there
 
   Scenario: visit site
     Given I am not visiting the site
