@@ -2,3 +2,4 @@ de:
   initiatives:
     index:
       create: Neue Initiative erstellen
+      name: Name
