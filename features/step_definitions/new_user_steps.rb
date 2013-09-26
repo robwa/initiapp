@@ -6,5 +6,5 @@ When(/^I enter the site$/) do
 end
 
 Then(/^I should be able to create a new initiative$/) do
-  page.should have_link 'Create new initiative'
+  page.should have_link I18n.t 'initiatives.index.create'
 end
