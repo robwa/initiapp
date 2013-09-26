@@ -8,6 +8,6 @@ gem 'haml-rails'
 
 group :test do
   gem 'rspec-rails'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
