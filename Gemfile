@@ -6,9 +6,12 @@ gem 'turbolinks'
 gem 'jquery-rails'
 gem 'haml-rails'
 
-group :test do
+group :development, :test do
   gem 'rspec-rails'
-  gem 'cucumber-rails', require: false
+end
+
+group :test do
+  gem 'cucumber-rails', require: false, git: 'https://github.com/cucumber/cucumber-rails.git'
   gem 'database_cleaner'
   gem 'coveralls', require: false
 end
