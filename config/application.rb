@@ -10,7 +10,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-module Initiative
+module Initiapp
   class Application < Rails::Application
   end
 end

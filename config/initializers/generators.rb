@@ -1,5 +1,4 @@
 # Neither run helper nor asset generators.
-Initiative::Application.config.generators do |g|
-  g.helper false
+Initiapp::Application.config.generators do |g|
   g.assets false
 end

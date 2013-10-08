@@ -3,4 +3,4 @@
 #config.time_zone = 'Berlin'
 
 # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-Initiative::Application.config.i18n.default_locale = :de
+Initiapp::Application.config.i18n.default_locale = :de
