@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/cucumber/cucumber-rails.git
+  remote: git://github.com/cucumber/cucumber-rails.git
   revision: 92fc3e9242885e9616ef6051812ed075890c8c85
   specs:
     cucumber-rails (1.4.0)
@@ -46,6 +46,8 @@ GEM
       xpath (~> 2.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    childprocess (0.3.9)
+      ffi (~> 1.0, >= 1.0.11)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -69,7 +71,7 @@ GEM
     database_cleaner (1.1.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
-    execjs (2.0.1)
+    execjs (2.0.2)
     ffi (1.9.0)
     formatador (0.2.4)
     gherkin (2.12.1)
@@ -83,12 +85,15 @@ GEM
     guard-rspec (3.1.0)
       guard (>= 1.8)
       rspec (~> 2.13)
-    haml (4.0.3)
-      tilt
-    haml-rails (0.4)
+    guard-spork (1.5.1)
+      childprocess (>= 0.2.3)
+      guard (>= 1.1)
+      spork (>= 0.8.4)
+    haml (3.1.8)
+    haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
       activesupport (>= 3.1, < 4.1)
-      haml (>= 3.1, < 4.1)
+      haml (~> 3.1)
       railties (>= 3.1, < 4.1)
     hike (1.2.3)
     i18n (0.6.5)
@@ -158,6 +163,10 @@ GEM
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
     slop (3.4.6)
+    spork (1.0.0rc4)
+    spork-rails (4.0.0)
+      rails (>= 3.0.0, < 5)
+      spork (>= 1.0rc0)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -193,9 +202,11 @@ DEPENDENCIES
   cucumber-rails!
   database_cleaner
   guard-rspec
+  guard-spork
   haml-rails
   jquery-rails
   rails
   rspec-rails
+  spork-rails
   sqlite3
   turbolinks
