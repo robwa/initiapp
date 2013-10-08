@@ -5,7 +5,7 @@ describe ApplicationHelper do
     it "sets the given title as content for :title" do
       helper.title('The Title')
       content = helper.content_for(:title)
-      content.should == 'The Title'
+      expect(content).to eq('The Title')
     end
   end
 end

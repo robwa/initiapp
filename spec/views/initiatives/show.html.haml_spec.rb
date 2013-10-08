@@ -10,11 +10,11 @@ describe "initiatives/show.html.haml" do
 
   it "sets the initiative name as the page title" do
     render
-    view.content_for(:title).should == name
+    expect(view.content_for(:title)).to eq(name)
   end
 
   it "displays the initiative name as the page header" do
     render
-    rendered.should have_selector('h1', text: name)
+    expect(rendered).to have_selector('h1', text: name)
   end
 end
