@@ -1,4 +1,4 @@
-initiapp
+Initiapp
 ========
 
 [![Code Climate](https://codeclimate.com/github/robwa/initiapp.png)](https://codeclimate.com/github/robwa/initiapp)
