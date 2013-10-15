@@ -8,13 +8,15 @@ gem 'haml-rails'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'guard-rspec'
-  gem 'guard-spork'
+  gem 'cucumber-rails', require: false, github: 'cucumber/cucumber-rails'
   gem 'spork-rails'
+
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+  gem 'guard-spork'
 end
 
 group :test do
-  gem 'cucumber-rails', require: false, github: 'cucumber/cucumber-rails'
   gem 'database_cleaner'
   gem 'coveralls', require: false
 end

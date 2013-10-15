@@ -3,7 +3,7 @@ When(/^I visit the initiatives website$/) do
 end
 
 When(/^I submit "(.*?)" as the name of the new initiative$/) do |name|
-  fill_in :name, with: name
+  fill_in :initiative_name, with: name
   click_on I18n.t('initiatives.index.create')
 end
 

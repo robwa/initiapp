@@ -1,3 +1,3 @@
 Initiapp::Application.routes.draw do
-  resources :initiatives
+  resources :initiatives, path: ''
 end
