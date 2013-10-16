@@ -1,3 +1,13 @@
+Given(/^a number of initiatives$/) do
+  Initiative.create(name: "Test Initiative")
+  Initiative.create(name: "Interesting Initiative")
+  Initiative.create(name: "Something Else")
+end
+
+When(/^I choose the initiative "(.*?)" from the list$/) do |name|
+  click_on name
+end
+
 When(/^I visit the initiatives website$/) do
   visit '/'
 end
