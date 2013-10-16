@@ -7,3 +7,9 @@ Initiapp
 [![Coverage Status](https://coveralls.io/repos/robwa/initiapp/badge.png?branch=master)](https://coveralls.io/r/robwa/initiapp?branch=master)
 
 Web-based organization for initiatives.
+
+
+## Development
+
+    git clone https://github.com/robwa/initiapp.git
+    cd initiapp
