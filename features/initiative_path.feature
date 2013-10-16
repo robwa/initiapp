@@ -4,10 +4,25 @@ Feature: initiative path
   As any user
   I want to get nicely named project paths
 
-  Scenario: visit initiative homepage
-    Given an initiative named "Test Initiative"
+
+  Scenario Outline: visit initiative homepage
+    Given an initiative named "<name>"
     When I visit the initiative homepage
-    Then the homepage path is "/test-initiative"
+    Then the homepage path is "<path>"
+
+  Scenarios: valid names and paths
+    | name            | path             |
+    | Test Initiative | /test-initiative |
+    | zuckersüß       | /zuckersuess     |
+    | Ähre            | /aehre           |
+    | Einfach machen! | /einfach-machen  |
+    | !               | /1               |
+    | !+/&            | /1               |
+    | 8teen           | /8teen           |
+    | under_score     | /under_score     |
+    | ruby.rails      | /ruby-rails      |
+    | about:source    | /about-source    |
+  
 
   Scenario: create initiative with existing name
     Given an initiative with a name

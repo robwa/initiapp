@@ -11,4 +11,9 @@ describe Initiative do
     @initiative.name = nil
     expect(@initiative).not_to be_valid
   end
+
+  it "is not valid with an empty name" do
+    @initiative.name = ''
+    expect(@initiative).not_to be_valid
+  end
 end
