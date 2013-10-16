@@ -8,6 +8,6 @@ When(/^I submit "(.*?)" as the name of the new initiative$/) do |name|
 end
 
 Then(/^I see the homepage of "(.*?)"$/) do |name|
-  page.should have_title name
-  page.should have_selector 'h1', text: name
+  expect(page).to have_title name
+  expect(page).to have_selector 'h1', text: name
 end
