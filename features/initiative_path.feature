@@ -8,3 +8,8 @@ Feature: initiative path
     Given an initiative named "Test Initiative"
     When I visit the initiative homepage
     Then the homepage path is "/test-initiative"
+
+  Scenario: create initiative with existing name
+    Given an initiative with a name
+    When I create an initiative with the same name
+    Then a suffix is added to the homepage path
