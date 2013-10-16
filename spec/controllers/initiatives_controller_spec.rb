@@ -32,8 +32,10 @@ describe InitiativesController do
 
   describe "GET show" do
     it "finds the initiative" do
-      expect(Initiative).to receive(:find)
-      get :show, id: 0
+      initiative = double(Initiative)
+      Initiative.stub_chain(:friendly, :find).and_return(initiative)
+      expect(Initiative.friendly).to receive(:find).with('test')
+      get :show, id: 'test'
     end
   end
 end

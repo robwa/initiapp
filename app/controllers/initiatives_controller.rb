@@ -10,7 +10,7 @@ class InitiativesController < ApplicationController
   end
 
   def show
-    @initiative = Initiative.find(params[:id])
+    @initiative = Initiative.friendly.find(params[:id])
   end
 
   private

@@ -4,7 +4,6 @@ Feature: initiative path
   As any user
   I want to get nicely named project paths
 
-  @wip
   Scenario: visit initiative homepage
     Given an initiative named "Test Initiative"
     When I visit the initiative homepage
