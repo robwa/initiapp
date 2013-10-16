@@ -5,7 +5,7 @@ gem 'sqlite3'
 gem 'turbolinks'
 gem 'jquery-rails'
 gem 'haml-rails'
-gem 'friendly_id', '>= 5.0.0.rc3'
+gem 'friendly_id'
 
 group :development, :test do
   gem 'rspec-rails'
