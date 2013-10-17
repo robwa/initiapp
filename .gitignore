@@ -17,3 +17,7 @@
 
 # Ignore coverage results.
 /coverage
+
+# Ignore spring binstubs.
+/bin/spring
+/bin/rspec
