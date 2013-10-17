@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe "initiatives/index.html.haml" do
-  let(:initiative) { mock_model("Initiative").as_new_record.as_null_object }
 
   before do 
-    assign(:initiative, initiative)
     assign(:initiatives, [])
   end
 

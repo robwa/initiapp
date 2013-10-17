@@ -6,6 +6,8 @@ gem 'turbolinks'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'friendly_id'
+gem 'devise'
+gem 'devise-i18n'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -2,3 +2,5 @@ de:
   initiatives:
     index:
       create: Neue Initiative erstellen
+    show:
+      join: Dabei bleiben

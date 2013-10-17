@@ -17,4 +17,10 @@ describe "initiatives/show.html.haml" do
     render
     expect(rendered).to have_selector('h1', text: name)
   end
+
+  it "shows a form for joining the initiative" do
+    render
+    expect(rendered).to have_selector("form[action='#{user_registration_path}'][method='post']")
+    expect(rendered).to have_selector("form input[type='text']#user_email")
+  end
 end

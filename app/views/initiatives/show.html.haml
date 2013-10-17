@@ -1,4 +1,7 @@
 - title @initiative.name
 
-%h1
-  = @initiative.name
+%h1= @initiative.name
+
+= form_for(User.new, url: user_registration_path) do |f|
+  = f.text_field :email
+  = f.submit t('.join')

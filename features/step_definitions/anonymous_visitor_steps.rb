@@ -21,3 +21,17 @@ Then(/^I see the homepage of "(.*?)"$/) do |name|
   expect(page).to have_title name
   expect(page).to have_selector 'h1', text: name
 end
+
+Given(/^an initiative$/) do
+  @initiative = Initiative.create(name: "Test Initiative")
+end
+
+When(/^I join the initiative$/) do
+  visit initiative_path(@initiative)
+  fill_in :member_email, with: "some@address.email"
+  click_on I18n.t('initiatives.show.join')
+end
+
+Then(/^I am a member of the initiative$/) do
+  expect(@initiative.members.where(email: "some@address.email")).to have(1).result
+end
