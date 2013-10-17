@@ -9,7 +9,6 @@ Feature: anonymous visitor
     And I submit "Test Initiative" as the name of the new initiative
     Then I see the homepage of "Test Initiative"
 
-  @wip
   Scenario: visit initiative
     Given a number of initiatives
     When I visit the initiatives website

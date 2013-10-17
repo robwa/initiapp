@@ -1,3 +1,7 @@
 = form_for @initiative do |f|
   = f.text_field :name
   = f.submit t('.create')
+
+%ul
+  - @initiatives.each do |i|
+    %li= link_to i.name, i

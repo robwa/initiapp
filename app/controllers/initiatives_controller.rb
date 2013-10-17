@@ -1,6 +1,7 @@
 class InitiativesController < ApplicationController
   def index
     @initiative = Initiative.new
+    @initiatives = Initiative.all
   end
 
   def create

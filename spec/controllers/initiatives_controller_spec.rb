@@ -6,6 +6,11 @@ describe InitiativesController do
       expect(Initiative).to receive(:new)
       get :index
     end
+
+    it "queries the list of initiatives" do
+      expect(Initiative).to receive(:all)
+      get :index
+    end
   end
 
   describe "POST create" do
