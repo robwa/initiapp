@@ -1,12 +1,10 @@
 class InitiativesController < ApplicationController
   def index
-    @initiative = Initiative.new
     @initiatives = Initiative.all
   end
 
   def create
-    initiative = Initiative.new(initiative_params)
-    initiative.save
+    initiative = Initiative.create(initiative_params)
     redirect_to initiative
   end
 

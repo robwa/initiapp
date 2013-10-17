@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe InitiativesController do
   describe "GET index" do
-    it "creates an initiative instance" do
-      expect(Initiative).to receive(:new)
+    it "doesn't create an initiative instance" do
+      expect(Initiative).not_to receive(:new)
       get :index
     end
 
