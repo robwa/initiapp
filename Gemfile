@@ -11,7 +11,10 @@ gem 'devise-i18n'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'guard-rspec', require: false
+  gem 'spork-rails'
+
+  gem 'guard-rspec'
+  gem 'guard-spork'
 end
 
 group :test do
