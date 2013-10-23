@@ -1,6 +1,8 @@
 de:
   activerecord:
     errors:
+      messages:
+        record_invalid: Ungültiger Datensatz
       models:
         user:
           attributes:

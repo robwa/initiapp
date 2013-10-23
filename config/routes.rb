@@ -5,5 +5,5 @@ Initiapp::Application.routes.draw do
     end
   end
   
-  #devise_for :users, only: [:registrations]
+  devise_for :users
 end

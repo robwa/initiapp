@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017105354) do
+ActiveRecord::Schema.define(version: 20131023085030) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20131017105354) do
 
   add_index "initiatives", ["slug"], name: "index_initiatives_on_slug", unique: true
 
+  create_table "memberships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "initiative_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -44,6 +51,10 @@ ActiveRecord::Schema.define(version: 20131017105354) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

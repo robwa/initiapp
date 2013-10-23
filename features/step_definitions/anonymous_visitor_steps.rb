@@ -28,7 +28,7 @@ end
 
 When(/^I join the initiative$/) do
   visit initiative_path(@initiative)
-  fill_in :member_email, with: "some@address.email"
+  fill_in :user_email, with: "some@address.email"
   click_on I18n.t('initiatives.show.join')
 end
 
