@@ -7,10 +7,16 @@ describe "routing to initiatives" do
       expect(post: "/").to be_routable
     end
 
-    it "GET /:id routes to initiatives#show" do
+    it "routes for GET /:id to initiatives#show" do
       expect(get: "/not-a-keyword").to route_to(controller: "initiatives", 
                                                 action: "show",
                                                 id: "not-a-keyword")
+    end
+
+    it "routes for POST /:id to initiatives#join" do
+      expect(post: "/not-a-keyword").to route_to(controller: "initiatives",
+                                                 action: "join",
+                                                 id: "not-a-keyword")
     end
   end
 

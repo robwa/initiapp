@@ -2,6 +2,6 @@
 
 %h1= @initiative.name
 
-= form_for(User.new, url: join_initiative_path) do |f|
+= form_for(User.new, url: join_initiative_path(@initiative)) do |f|
   = f.text_field :email
   = f.submit t('.join')

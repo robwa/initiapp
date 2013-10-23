@@ -1,26 +1,30 @@
 class InitiativesController < ApplicationController
 
+  # GET /
   def index
     @initiatives = Initiative.all
   end
 
+  # POST /
   def create
     initiative = Initiative.create(initiative_params)
     redirect_to initiative
   end
 
+  # GET /initiative
   def show
     @initiative = Initiative.friendly.find(params[:id])
   end
 
-  # def join
-  #   initiative = Initiative.friendly.find(params[:id])
-  #   user = User.create(user_params)
+  # POST /initiative
+  def join
+    initiative = Initiative.friendly.find(params[:id])
+    user = User.create(user_params)
 
-  #   user.join(initiative)
+    user.join(initiative)
 
-  #   redirect_to initiative
-  # end
+    redirect_to initiative
+  end
 
 
   private

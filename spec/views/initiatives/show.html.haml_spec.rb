@@ -20,7 +20,7 @@ describe "initiatives/show.html.haml" do
 
   it "shows a form for joining the initiative" do
     render
-    expect(rendered).to have_selector("form[action='#{user_registration_path}'][method='post']")
+    expect(rendered).to have_selector("form[action='#{join_initiative_path(initiative)}'][method='post']")
     expect(rendered).to have_selector("form input[type='text']#user_email")
   end
 end
