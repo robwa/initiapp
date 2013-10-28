@@ -2,6 +2,13 @@
 
 %h1= @initiative.name
 
-= form_for(User.new, url: join_initiative_path(@initiative)) do |f|
-  = f.text_field :email
-  = f.submit t('.join')
+- unless user_signed_in?
+  = form_for(User.new, url: join_initiative_path(@initiative)) do |f|
+    = f.text_field :email
+    = f.submit t('.join')
+
+- if user_signed_in?
+  - if current_user.member_of?(@initiative)
+    %ul#members
+      - @initiative.members.each do |member|
+        %li= member.email
