@@ -15,7 +15,9 @@ Feature: anonymous visitor
     And I choose the initiative "Interesting Initiative" from the list
     Then I see the homepage of "Interesting Initiative"
 
+  @wip
   Scenario: join initiative
     Given an initiative
     When I join the initiative
-    Then I am a member of the initiative
+    Then I am signed in
+    And I see myself in the members list

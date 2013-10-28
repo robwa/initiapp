@@ -32,6 +32,10 @@ When(/^I join the initiative$/) do
   click_on I18n.t('initiatives.show.join')
 end
 
-Then(/^I am a member of the initiative$/) do
-  expect(@initiative.members.where(email: "some@address.email")).to have(1).result
+Then(/^I am signed in$/) do
+  expect(page).to have_selector 'ul#user', text: "some@address.email"
+end
+
+Then(/^I see myself in the members list$/) do
+  expect(page).to have_selector 'ul#members', text: "some@address.email"
 end
