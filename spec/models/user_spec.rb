@@ -9,11 +9,12 @@ describe User do
   end
 
   describe "#join" do
+    let(:user) { User.create!(email: "test@address.email") }
+    let(:initiative) { Initiative.create!(name: "Test Initiative") }
+
     it "adds itself to the initiative's members" do
-      user = User.create!(email: "test@address.email")
-      initiative = Initiative.create!(name: "Test Initiative")
       user.join(initiative)
-      expect(initiative.members).to include(user)
+      expect(user).to be_member_of(initiative)
     end
   end
 end

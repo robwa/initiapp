@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   def password_required?
   end
 
+  def member_of?(initiative)
+    initiative.members.exists?(id)
+  end
+
   def join(initiative)
     initiative.members << self
   end
