@@ -11,7 +11,7 @@ FriendlyId.defaults do |config|
   # Some words could conflict with Rails's routes when used as slugs, or are
   # undesirable to allow as slugs. Edit this list as needed for your app.
   config.use :reserved
-  config.reserved_words = %w()
+  config.reserved_words = %w(users)
 
   #  ## Friendly Finders
   #
