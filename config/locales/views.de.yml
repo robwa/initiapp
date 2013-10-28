@@ -4,3 +4,7 @@ de:
       create: Neue Initiative erstellen
     show:
       join: Dabei bleiben
+  layouts:
+    application:
+      sign_in: Anmelden
+      sign_out: Abmelden

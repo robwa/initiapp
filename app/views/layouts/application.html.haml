@@ -7,4 +7,14 @@
     = csrf_meta_tags
 
   %body
+    %ul#user
+      - if user_signed_in?
+        %li= current_user.email
+        %li= link_to t('.sign_out'), destroy_user_session_path
+      - else
+        %li= link_to t('.sign_in'), new_user_session_path
+
+    - flash.each do |key, message|
+      = content_tag :div, message, id: "flash_#{key}"
+
     = yield

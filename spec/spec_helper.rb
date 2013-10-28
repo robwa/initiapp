@@ -6,10 +6,6 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
 
-  # Coveralls
-  require 'coveralls'
-  Coveralls.wear_merged!('rails')
-
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
@@ -45,11 +41,6 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = "random"
-
-    # Disable should syntax.
-    config.expect_with :rspec do |c|
-      c.syntax = :expect
-    end
   end
 end
 
