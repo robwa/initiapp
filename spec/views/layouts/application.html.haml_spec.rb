@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'layouts/application.html.haml' do
   before(:each) do
-    allow(view).to receive(:user_signed_in?)
+    user_stubs
   end
 
   it "sets the content for :title as page title" do
@@ -13,27 +13,22 @@ describe 'layouts/application.html.haml' do
 
   context "no user is signed in" do
     it "shows a sign in link" do
-      allow(view).to receive(:user_signed_in?).and_return(false)
       render
-      expect(rendered).to have_link I18n.t("layouts.application.sign_in")
+      expect(rendered).to have_link t("layouts.application.sign_in")
     end
   end
 
   context "a user is signed in" do
-    let(:user) { double(User, email: "test@address.email") }
-    before(:each) do
-      allow(view).to receive(:user_signed_in?).and_return(true)
-      allow(view).to receive(:current_user).and_return(user)
-    end
-
     it "displays the email address" do
+      user_stubs(sign_in: true, email: "test@address.email")
       render
       expect(rendered).to have_selector "ul#user", text: "test@address.email"
     end
 
     it "shows a sign out link" do
+      user_stubs(sign_in: true)
       render
-      expect(rendered).to have_link I18n.t("layouts.application.sign_out")
+      expect(rendered).to have_link t("layouts.application.sign_out")
     end
   end
 
