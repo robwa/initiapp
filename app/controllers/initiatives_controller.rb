@@ -26,11 +26,15 @@ class InitiativesController < ApplicationController
   # POST /initiative
   def join
     initiative = Initiative.friendly.find(params[:id])
-    user = User.create(user_params)
-
-    user.join(initiative)
-
-    redirect_to initiative
+    @user = User.new(user_params)
+    if @user.save
+      sign_in @user
+      @user.join(initiative)
+      redirect_to initiative, notice: t('notifications.models.user.join')
+    else
+      flash.now[:alert] = t('errors.models.user.create')
+      render :show
+    end
   end
 
 

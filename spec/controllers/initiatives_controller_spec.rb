@@ -71,8 +71,8 @@ describe InitiativesController do
 
   describe "POST join" do
     let(:params) { { id: 'test', user: { email: 'test@address.email' } } }
-    let(:user) { double(User).as_null_object }
-    before { allow(User).to receive(:create).and_return(user) }
+    let(:user) { User.new(email: 'test@address.email') }
+    before { allow(User).to receive(:new).and_return(user) }
 
     it "finds the initiative" do
       expect(Initiative.friendly).to receive(:find).with('test')
@@ -80,18 +80,54 @@ describe InitiativesController do
     end
 
     it "creates a new user from the params" do
-      expect(User).to receive(:create)
+      expect(User).to receive(:new)
       post :join, params
     end
 
-    it "calls join() on the user with the initiative" do
-      expect(user).to receive(:join).with(initiative)
+    it "saves the user" do
+      expect(user).to receive(:save)
       post :join, params
     end
 
-    it "redirects to the initiative homepage" do
-      post :join, params
-      expect(response).to redirect_to(initiative)
+    context "when the user saves sucessfully" do
+      it "signs the user in" do
+        post :join, params
+        expect(subject.current_user).to eq(user)
+      end
+
+      it "calls join() on the user with the initiative" do
+        expect(user).to receive(:join).with(initiative)
+        post :join, params
+      end
+      
+      it "sets a notification message" do
+        post :join, params
+        expect(flash[:notice]).to eq(I18n.t 'notifications.models.user.join')
+      end
+
+      it "redirects to the initiative homepage" do
+        post :join, params
+        expect(response).to redirect_to(initiative)
+      end
+    end
+
+    context "when the user fails to save" do
+      before { allow(user).to receive(:save).and_return(false) }
+
+      it "assigns @user" do
+        post :join, params
+        expect(assigns[:user]).to eq(user)
+      end
+
+      it "sets an alert message" do
+        post :join, params
+        expect(flash[:alert]).to eq(I18n.t 'errors.models.user.create')
+      end
+
+      it "renders the show template" do
+        post :join, params
+        expect(response).to render_template(:show)
+      end
     end
   end
 end
