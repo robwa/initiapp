@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
   end
 
   def join(initiative)
-    initiative.members << self
+    initiative.members << self unless member_of?(initiative)
   end
 end

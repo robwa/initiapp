@@ -16,5 +16,11 @@ describe User do
       user.join(initiative)
       expect(user).to be_member_of(initiative)
     end
+
+    it "catches double membership" do
+      user.join(initiative)
+      user.join(initiative)
+      expect(initiative.memberships.where(user_id: user.id)).to have(1).result
+    end
   end
 end
