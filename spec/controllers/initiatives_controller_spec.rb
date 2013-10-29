@@ -2,23 +2,22 @@ require 'spec_helper'
 
 describe InitiativesController do
   let(:initiative) { mock_model(Initiative).as_null_object }
-  before { Initiative.stub_chain(:friendly, :find).and_return(initiative) }
+  before { initiative_stubs(initiative: initiative) }
 
   describe "GET index" do
-    it "doesn't create an initiative instance" do
-      expect(Initiative).not_to receive(:new)
+    it "assigns @initiative" do
       get :index
+      expect(assigns[:initiative]).to eq(initiative)
     end
 
-    it "queries the list of initiatives" do
-      expect(Initiative).to receive(:all)
+    it "assigns @initiatives" do
       get :index
+      expect(assigns[:initiatives]).to be
     end
   end
 
   describe "POST create" do
     let(:params) { { initiative: { name: "Test Initiative" } } }
-    before { Initiative.stub(:new).and_return(initiative) }
 
     it "creates a new initiative" do
       expect(Initiative).to receive(:new).with("name" => "Test Initiative").
@@ -31,9 +30,35 @@ describe InitiativesController do
       post :create, params
     end
 
-    it "redirects to the initiative homepage" do
-      post :create, params
-      expect(response).to redirect_to(initiative)
+    context "when the initiative saves succesfully" do
+      it "redirects to the initiative homepage" do
+        post :create, params
+        expect(response).to redirect_to(initiative)
+      end
+    end
+
+    context "when the initiative fails to save" do
+      before { allow(initiative).to receive(:save).and_return(false) }
+
+      it "assigns @initiative" do
+        post :create, params
+        expect(assigns[:initiative]).to eq(initiative)
+      end
+
+      it "assigns @initiatives" do
+        post :create, params
+        expect(assigns[:initiatives]).to be
+      end
+
+      it "sets an alert message" do
+        post :create, params
+        expect(flash[:alert]).to eq(I18n.t 'errors.models.initiative.create')
+      end
+
+      it "renders the index template" do
+        post :create, params
+        expect(response).to render_template(:index)
+      end
     end
   end
 

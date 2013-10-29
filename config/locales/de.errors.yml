@@ -1,0 +1,8 @@
+de:
+  errors:
+    messages:
+      blank: muss angegeben werden
+      record_invalid: Ungültiger Datensatz
+    models:
+      initiative:
+        create: Initiative konnte nicht erstellt werden!

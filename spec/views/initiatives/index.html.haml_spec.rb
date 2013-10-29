@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "initiatives/index.html.haml" do
 
   before do 
+    assign(:initiative, Initiative.new)
     assign(:initiatives, [])
   end
 

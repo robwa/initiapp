@@ -14,7 +14,7 @@
       - else
         %li= link_to t('.sign_in'), new_user_session_path
 
-    - flash.each do |key, message|
-      = content_tag :div, message, id: "flash_#{key}"
+    - flash.each do |name, message|
+      = content_tag :div, message, class: name
 
     = yield

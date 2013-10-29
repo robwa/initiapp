@@ -7,6 +7,7 @@ def user_stubs(options = {})
   end
 end
 
-def initiative_stubs
-  Initiative.stub_chain(:friendly, :find)
+def initiative_stubs(options = {})
+  Initiative.stub(:new).and_return(options[:initiative])
+  Initiative.stub_chain(:friendly, :find).and_return(options[:initiative])
 end

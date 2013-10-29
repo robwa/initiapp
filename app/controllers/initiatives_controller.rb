@@ -2,13 +2,20 @@ class InitiativesController < ApplicationController
 
   # GET /
   def index
+    @initiative = Initiative.new
     @initiatives = Initiative.all
   end
 
   # POST /
   def create
-    initiative = Initiative.create(initiative_params)
-    redirect_to initiative
+    @initiative = Initiative.new(initiative_params)
+    if @initiative.save
+      redirect_to @initiative
+    else
+      @initiatives = Initiative.all
+      flash.now[:alert] = t('errors.models.initiative.create')
+      render :index
+    end
   end
 
   # GET /initiative
