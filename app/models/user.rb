@@ -8,10 +8,11 @@ class User < ActiveRecord::Base
   end
 
   def member_of?(initiative)
-    initiative.members.exists?(id)
+    initiative.members.include?(self)
   end
 
   def join(initiative)
-    initiative.members << self unless member_of?(initiative)
+    initiative.members << self
+  rescue ActiveRecord::RecordNotUnique
   end
 end
