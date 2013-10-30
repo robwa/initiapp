@@ -20,6 +20,7 @@ class InitiativesController < ApplicationController
 
   # GET /initiative
   def show
+    @user = User.new
     @initiative = Initiative.friendly.find(params[:id])
   end
 

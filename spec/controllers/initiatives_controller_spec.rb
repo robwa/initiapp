@@ -64,6 +64,11 @@ describe InitiativesController do
 
 
   describe "GET show" do
+    it "assigns @user" do
+      get :show, id: 'test'
+      expect(assigns[:user]).to be
+    end
+
     it "finds the initiative" do
       expect(Initiative.friendly).to receive(:find).with('test')
       get :show, id: 'test'

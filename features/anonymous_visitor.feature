@@ -18,5 +18,6 @@ Feature: anonymous visitor
   Scenario: join initiative
     Given an initiative
     When I join the initiative
-    Then I am signed in
+    Then I should be signed in
     And I see myself in the members list
+    And "some@address.email" should receive an email

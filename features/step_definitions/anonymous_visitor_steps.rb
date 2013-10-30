@@ -23,7 +23,7 @@ Then(/^I see the homepage of "(.*?)"$/) do |name|
 end
 
 Given(/^an initiative$/) do
-  @initiative = Initiative.create(name: "Test Initiative")
+  @initiative = Initiative.create!(name: "Test Initiative")
 end
 
 When(/^I join the initiative$/) do
@@ -32,7 +32,7 @@ When(/^I join the initiative$/) do
   click_on I18n.t('initiatives.show.join')
 end
 
-Then(/^I am signed in$/) do
+Then(/^I should be signed in$/) do
   expect(page).to have_selector 'ul#user', text: "some@address.email"
 end
 

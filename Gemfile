@@ -20,5 +20,6 @@ end
 group :test do
   gem 'cucumber-rails', require: false, github: 'cucumber/cucumber-rails'
   gem 'database_cleaner'
+  gem 'email_spec'
   gem 'coveralls', require: false
 end
