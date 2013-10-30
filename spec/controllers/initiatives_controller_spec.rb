@@ -130,6 +130,11 @@ describe InitiativesController do
         expect(assigns[:user]).to eq(user)
       end
 
+      it "assigns @initiative" do
+        post :join, params
+        expect(assigns[:initiative]).to eq(initiative)
+      end
+
       it "sets an alert message" do
         post :join, params
         expect(flash[:alert]).to eq(I18n.t 'errors.models.user.create')

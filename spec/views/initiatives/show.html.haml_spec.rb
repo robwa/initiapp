@@ -6,6 +6,7 @@ describe "initiatives/show.html.haml" do
   
   before(:each) do
     user_stubs
+    assign(:user, stub_model(User))
     assign(:initiative, initiative)
   end
 

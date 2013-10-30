@@ -10,7 +10,7 @@
     %ul#user
       - if user_signed_in?
         %li= current_user.email
-        %li= link_to t('.sign_out'), destroy_user_session_path
+        %li= link_to t('.sign_out'), destroy_user_session_path, method: :delete
       - else
         %li= link_to t('.sign_in'), new_user_session_path
 

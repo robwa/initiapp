@@ -3,7 +3,7 @@
 %h1= @initiative.name
 
 - unless user_is_member?
-  = form_for(User.new, url: join_initiative_path(@initiative)) do |f|
+  = form_for(@user, url: join_initiative_path(@initiative)) do |f|
     - unless user_signed_in?
       = f.text_field :email
     = f.submit t('.join')
