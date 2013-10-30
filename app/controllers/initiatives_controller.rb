@@ -26,8 +26,8 @@ class InitiativesController < ApplicationController
   # POST /initiative
   def join
     initiative = Initiative.friendly.find(params[:id])
-    @user = User.new(user_params)
-    if @user.save
+    @user = User.find_or_create_by(email: params[:user][:email])
+    if @user.persisted?
       sign_in @user
       @user.join(initiative)
       redirect_to initiative, notice: t('notifications.models.user.join')

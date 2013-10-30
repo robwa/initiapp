@@ -62,12 +62,14 @@ describe InitiativesController do
     end
   end
 
+
   describe "GET show" do
     it "finds the initiative" do
       expect(Initiative.friendly).to receive(:find).with('test')
       get :show, id: 'test'
     end
   end
+
 
   describe "POST join" do
     let(:params) { { id: 'test', user: { email: 'test@address.email' } } }
@@ -79,17 +81,26 @@ describe InitiativesController do
       post :join, params
     end
 
-    it "creates a new user from the params" do
-      expect(User).to receive(:new)
+    it "checks if there already exists a user with the given address" do
+      expect(User).to receive(:find_or_create_by).and_return(user)
       post :join, params
     end
 
-    it "saves the user" do
-      expect(user).to receive(:save)
-      post :join, params
+    context "when there is no user with this email address" do
+      it "creates a new user" do
+        expect(User).to receive(:new)
+        post :join, params
+      end
+
+      it "saves the user" do
+        expect(user).to receive(:save)
+        post :join, params
+      end
     end
 
-    context "when the user saves sucessfully" do
+    context "when the user was (already) persisted successfully" do
+      before { allow(user).to receive(:persisted?).and_return(true) }
+
       it "signs the user in" do
         post :join, params
         expect(subject.current_user).to eq(user)
@@ -111,8 +122,8 @@ describe InitiativesController do
       end
     end
 
-    context "when the user fails to save" do
-      before { allow(user).to receive(:save).and_return(false) }
+    context "when the user failed to be persisted" do
+      before { allow(user).to receive(:persisted?).and_return(false) }
 
       it "assigns @user" do
         post :join, params
