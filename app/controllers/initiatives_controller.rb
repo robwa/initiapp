@@ -45,10 +45,6 @@ class InitiativesController < ApplicationController
     params.require(:initiative).permit(:name)
   end
 
-  def user_params
-    params.require(:user).permit(:email)
-  end
-
   def join_email
     if user_signed_in?
       current_user.email
