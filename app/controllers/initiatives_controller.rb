@@ -27,7 +27,7 @@ class InitiativesController < ApplicationController
   # POST /initiative
   def join
     @initiative = Initiative.friendly.find(params[:id])
-    @user = User.find_or_create_by(email: params[:user][:email])
+    @user = User.find_or_create_by(email: join_email)
     if @user.persisted?
       sign_in @user
       @user.join(@initiative)
@@ -47,6 +47,14 @@ class InitiativesController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email)
+  end
+
+  def join_email
+    if user_signed_in?
+      current_user.email
+    elsif params[:user]
+      params[:user][:email]
+    end
   end
 
 end

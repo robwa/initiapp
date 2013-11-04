@@ -46,7 +46,6 @@ Feature: initiatives
     And I see "some@address.email" in the members list
     And "some@address.email" should receive an email
 
-  @wip
   Scenario: join initiative as a known user
     Given a user "user@test.net"
     And an initiative "Test Initiative"
