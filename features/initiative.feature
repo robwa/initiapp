@@ -41,16 +41,16 @@ Feature: initiatives
 
   Scenario: join initiative as an anonymous user
     Given an initiative "Test Initiative"
-    When I join the initiative
-    Then I should be signed in
-    And I see myself in the members list
+    When I sign in as "some@address.email" joining "Test Initiative"
+    Then I am signed in
+    And I see "some@address.email" in the members list
     And "some@address.email" should receive an email
 
   @wip
   Scenario: join initiative as a known user
-    Given an initiative "Test Initiative"
+    Given a user "user@test.net"
+    And an initiative "Test Initiative"
     And an initiative "Other Initiative"
-    And a user "user@test.net"
-    When I sign in joining "Test Initiative"
+    When I sign in as "user@test.net" joining "Test Initiative"
     And I join "Other Initiative"
-    Then I see myself in the members list
+    Then I see "user@test.net" in the members list

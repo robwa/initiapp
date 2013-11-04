@@ -1,5 +1,5 @@
-Given(/^a user "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^a user "(.*?)"$/) do |email|
+  User.create!(email: email)
 end
 
 
@@ -16,7 +16,7 @@ When(/^I confirm my account$/) do
 end
 
 
-Then(/^I should be signed in$/) do
+Then(/^I am signed in$/) do
   expect(page).to have_selector 'ul#user', text: "some@address.email"
 end
 
