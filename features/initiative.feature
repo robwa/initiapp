@@ -10,7 +10,7 @@ Feature: initiatives
     Then I see the homepage of "Test Initiative"
 
   Scenario: create initiative with existing name
-    Given an initiative with a name
+    Given an initiative "test"
     When I create an initiative with the same name
     Then a suffix is added to the homepage path
 
@@ -21,7 +21,7 @@ Feature: initiatives
     Then I see the homepage of "Interesting Initiative"
 
   Scenario Outline: initiative homepage path
-    Given an initiative named "<name>"
+    Given an initiative "<name>"
     When I visit the initiative homepage
     Then the homepage path is "<path>"
 
@@ -40,7 +40,7 @@ Feature: initiatives
   
 
   Scenario: join initiative as an anonymous user
-    Given an initiative
+    Given an initiative "Test Initiative"
     When I join the initiative
     Then I should be signed in
     And I see myself in the members list

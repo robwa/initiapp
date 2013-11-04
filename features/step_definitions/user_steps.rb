@@ -2,6 +2,7 @@ Given(/^a user "(.*?)"$/) do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
+
 When(/^I request confirmation instructions$/) do
   pending # express the regexp above with the code you wish you had
 end
@@ -12,6 +13,11 @@ end
 
 When(/^I confirm my account$/) do
   pending # express the regexp above with the code you wish you had
+end
+
+
+Then(/^I should be signed in$/) do
+  expect(page).to have_selector 'ul#user', text: "some@address.email"
 end
 
 Then(/^I am a confirmed user$/) do
