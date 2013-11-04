@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :memberships
 
   def password_required?
+    super if confirmed?
   end
 
   def member_of?(initiative)

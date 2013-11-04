@@ -29,7 +29,7 @@ class InitiativesController < ApplicationController
     @initiative = Initiative.friendly.find(params[:id])
     @user = User.find_or_create_by(email: join_email)
     if @user.persisted?
-      sign_in @user
+      sign_in @user unless user_signed_in?
       @user.join(@initiative)
       redirect_to @initiative, notice: t('notifications.models.user.join')
     else
