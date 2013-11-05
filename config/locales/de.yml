@@ -12,3 +12,7 @@ de:
     application:
       sign_in: Anmelden
       sign_out: Abmelden
+  users:
+    confirmations:
+      show:
+        confirm: Benutzerkonto bestätigen

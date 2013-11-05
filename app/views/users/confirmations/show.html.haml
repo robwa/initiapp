@@ -1,0 +1,6 @@
+= form_for(resource, as: resource_name, url: confirm_user_confirmation_path, method: :patch) do |f|
+  = devise_error_messages!
+  = f.password_field :password
+  = f.password_field :password_confirmation
+  = f.hidden_field :confirmation_token
+  = f.submit t ".confirm"

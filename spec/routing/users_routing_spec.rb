@@ -9,9 +9,16 @@ describe "routing to users" do
       expect(delete: "/users/sign_out").to be_routable
     end
 
-    it "routes registration to registrations" do
+    it "routes registration to devise/registrations" do
       expect(post: "/users").to route_to(controller: "devise/registrations",
                                          action: "create")
+    end
+
+    it "routes confirm to users/confirmations" do
+      expect(get: "/users/confirmation").to route_to(controller: "users/confirmations",
+                                                     action: "show")
+      expect(patch: "/users/confirmation").to route_to(controller: "users/confirmations",
+                                                       action: "confirm")
     end
   end
 
