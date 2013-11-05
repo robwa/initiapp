@@ -1,4 +1,8 @@
 de:
+  devise:
+    registrations:
+      new:
+        sign_up: Benutzerkonto anlegen
   initiatives:
     index:
       create: Neue Initiative erstellen
