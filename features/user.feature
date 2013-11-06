@@ -1,4 +1,3 @@
-@wip
 Feature: users
 
   In order to manage my account

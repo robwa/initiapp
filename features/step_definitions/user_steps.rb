@@ -17,7 +17,7 @@ end
 When(/^I confirm my account$/) do
   fill_in :user_password, with: "password"
   fill_in :user_password_confirmation, with: "password"
-  click_on "Confirm"
+  click_on I18n.t('users.confirmations.show.confirm')
 end
 
 
@@ -26,5 +26,6 @@ Then(/^I am signed in$/) do
 end
 
 Then(/^I am a confirmed user$/) do
+  @user.reload
   expect(@user).to be_confirmed
 end
