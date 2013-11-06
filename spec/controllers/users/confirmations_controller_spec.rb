@@ -14,18 +14,21 @@ describe Users::ConfirmationsController do
   end
 
   describe "PATCH confirm" do
+    let(:user) { User.create!(email: "test@test.org") }
+    let(:params) { { user: { 
+          confirmation_token: user.confirmation_token, 
+          password: password,
+          password_confirmation: password_confirmation
+        } } }
+
     it "redirects to show for invalid confirmation token" do
       patch :confirm, user: { confirmation_token: 'abcde' }
       expect(response).to redirect_to(action: :show, confirmation_token: 'abcde')
     end
 
     context "with valid and matching passwords" do
-      let(:user) { User.create!(email: "test@test.org") }
-      let(:params) { { user: { 
-          confirmation_token: user.confirmation_token, 
-          password: 'password',
-          password_confirmation: 'password'
-        } } }
+      let(:password)              { 'password' }
+      let(:password_confirmation) { 'password' }
 
       it "assigns the user an encrypted password" do
         patch :confirm, params
@@ -47,6 +50,38 @@ describe Users::ConfirmationsController do
       it "redirects to /" do
         patch :confirm, params
         expect(response).to redirect_to '/'
+      end
+    end
+
+    context "with invalid but matching passwords" do
+      let(:password)              { 'short' }
+      let(:password_confirmation) { 'short' }
+
+      it "doesn't assign the user an encrypted password" do
+        patch :confirm, params
+        user.reload
+        expect(user.encrypted_password).to be_blank
+      end
+
+      it "renders show" do
+        patch :confirm, params
+        expect(response).to render_template :show
+      end
+    end
+
+    context "with valid but different passwords" do
+      let(:password)              { 'password1' }
+      let(:password_confirmation) { 'password2' }
+
+      it "doesn't assign the user an encrypted password" do
+        patch :confirm, params
+        user.reload
+        expect(user.encrypted_password).to be_blank
+      end
+
+      it "renders show" do
+        patch :confirm, params
+        expect(response).to render_template :show
       end
     end
   end
