@@ -12,12 +12,14 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     unless resource.nil?
       if resource.update(resource_params)
         resource.confirm!
+        sign_in(resource)
         set_flash_message(:notice, :confirmed)
         redirect_to after_confirmation_path_for(resource_name, resource)
       else
         render :show
       end
     else
+      set_flash_message(:alert, :unconfirmed)
       redirect_to action: :show, confirmation_token: confirmation_token
     end
   end

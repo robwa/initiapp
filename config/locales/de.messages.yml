@@ -1,4 +1,7 @@
 de:
+  devise:
+    confirmations:
+      unconfirmed: Benutzerkonto konnte nicht bestätigt werden!
   errors:
     messages:
       blank: muss angegeben werden

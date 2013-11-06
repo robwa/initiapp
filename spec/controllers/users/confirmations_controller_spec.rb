@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe Users::ConfirmationsController do
+  before (:each) do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+  end
+
   describe "GET show" do
     it "finds the user instance matching the confirmation token" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
       allow(controller).to receive(:resource_class).and_return(User)
       expect(User).to receive(:find_by)
       get :show, confirmation_token: 'abcde'
@@ -12,9 +15,39 @@ describe Users::ConfirmationsController do
 
   describe "PATCH confirm" do
     it "redirects to show for invalid confirmation token" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
       patch :confirm, user: { confirmation_token: 'abcde' }
       expect(response).to redirect_to(action: :show, confirmation_token: 'abcde')
+    end
+
+    context "with valid and matching passwords" do
+      let(:user) { User.create!(email: "test@test.org") }
+      let(:params) { { user: { 
+          confirmation_token: user.confirmation_token, 
+          password: 'password',
+          password_confirmation: 'password'
+        } } }
+
+      it "assigns the user an encrypted password" do
+        patch :confirm, params
+        user.reload
+        expect(user.encrypted_password).to be_present
+      end
+
+      it "confirms the user" do
+        patch :confirm, params
+        user.reload
+        expect(user).to be_confirmed
+      end
+
+      it "signs the user in" do
+        patch :confirm, params
+        expect(controller.current_user).to be
+      end
+
+      it "redirects to /" do
+        patch :confirm, params
+        expect(response).to redirect_to '/'
+      end
     end
   end
 end
