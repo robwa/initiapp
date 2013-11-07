@@ -35,7 +35,7 @@ When(/^I join "(.*?)"$/) do |name|
   click_on I18n.t('initiatives.show.join')
 end
 
-When(/^I sign in as "(.*?)" joining "(.*?)"$/) do |user, initiative|
+When(/^I (?:try to |)sign in as "(.*?)" joining "(.*?)"$/) do |user, initiative|
   visit initiative_path(Initiative.find_by!(name: initiative))
   fill_in :user_email, with: user
   click_on I18n.t('initiatives.show.join')

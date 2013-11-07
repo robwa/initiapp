@@ -2,6 +2,11 @@ Given(/^a user "(.*?)"$/) do |email|
   @user = User.create!(email: email)
 end
 
+Given(/^a confirmed user "(.*?)" with "(.*?)"$/) do |email, password|
+  @user = User.create!(email: email, password: password)
+  @user.confirm!
+end
+
 
 When(/^I request confirmation instructions$/) do
   visit new_user_confirmation_url
@@ -21,8 +26,12 @@ When(/^I confirm my account$/) do
 end
 
 
-Then(/^I am signed in$/) do
-  expect(page).to have_selector 'ul#user', text: "some@address.email"
+Then(/^I am signed in as "(.*)"$/) do |user|
+  expect(page).to have_selector 'ul#user', text: user
+end
+
+Then(/^I am not signed in$/) do
+  expect(page).to have_selector 'ul#user', text: I18n.t('layouts.application.sign_in')
 end
 
 Then(/^I am a confirmed user$/) do

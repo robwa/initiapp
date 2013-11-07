@@ -29,9 +29,13 @@ class InitiativesController < ApplicationController
     @initiative = Initiative.friendly.find(params[:id])
     @user = User.find_or_create_by(email: join_email)
     if @user.persisted?
-      sign_in @user unless user_signed_in?
-      @user.join(@initiative)
-      redirect_to @initiative, notice: t('notifications.models.user.join')
+      unless @user.confirmed?
+        sign_in @user unless user_signed_in?
+        @user.join(@initiative)
+        redirect_to @initiative, notice: t('notifications.models.user.join')
+      else
+        redirect_to new_user_session_url, notice: t('notifications.models.user.confirmed')
+      end
     else
       flash.now[:alert] = t('errors.models.user.create')
       render :show

@@ -42,7 +42,7 @@ Feature: initiatives
   Scenario: join initiative as an anonymous user
     Given an initiative "Test Initiative"
     When I sign in as "some@address.email" joining "Test Initiative"
-    Then I am signed in
+    Then I am signed in as "some@address.email"
     And I see "some@address.email" in the members list
     And "some@address.email" should receive an email
 
@@ -53,3 +53,9 @@ Feature: initiatives
     When I sign in as "user@test.net" joining "Test Initiative"
     And I join "Other Initiative"
     Then I see "user@test.net" in the members list
+
+  Scenario: join initiative as a confirmed user without password
+    Given a confirmed user "user@test.net" with "password"
+    And an initiative "Test Initiative"
+    When I try to sign in as "user@test.net" joining "Test Initiative"
+    Then I am not signed in

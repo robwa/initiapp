@@ -106,9 +106,15 @@ describe InitiativesController do
     context "when the user was (already) persisted successfully" do
       before { allow(user).to receive(:persisted?).and_return(true) }
 
+      it "redirects to sign in if the user is confirmed" do
+        allow(user).to receive(:confirmed?).and_return(true)
+        post :join, params
+        expect(response).to redirect_to(new_user_session_url)
+      end
+
       it "signs the user in" do
         post :join, params
-        expect(subject.current_user).to eq(user)
+        expect(controller.current_user).to eq(user)
       end
 
       it "calls join() on the user with the initiative" do
