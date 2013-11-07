@@ -1,4 +1,4 @@
-Feature: users
+Feature: user
 
   In order to manage my account
   As a visitor becoming or being a user

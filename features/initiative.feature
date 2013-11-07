@@ -1,4 +1,4 @@
-Feature: initiatives
+Feature: initiative
 
   In order to collaborate with others
   As an anonymous or known visitor

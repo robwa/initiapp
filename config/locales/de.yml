@@ -7,6 +7,7 @@ de:
     index:
       create: Neue Initiative erstellen
     show:
+      create_text: Neuen Text erstellen
       join: Dabei bleiben
   layouts:
     application:

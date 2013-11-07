@@ -1,5 +1,5 @@
-Given(/^an initiative "(.*?)"$/) do |name|
-  @initiative = Initiative.create!(name: name)
+Given(/^an initiative(?: "(.*?)")?$/) do |name|
+  @initiative = Initiative.create!(name: name.blank? ? "Test Initiative" : name)
 end
 
 Given(/^a number of initiatives$/) do
