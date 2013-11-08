@@ -75,6 +75,11 @@ describe "initiatives/show.html.haml" do
         expect(rendered).to have_selector("ul#members")
       end
 
+      it "displays a list of texts" do
+        render
+        expect(rendered).to have_selector("ul#texts")
+      end
+
       it "displays a form for creating a text" do
         render
         expect(rendered).to have_selector("form[action='#{initiative_texts_path(initiative)}'][method='post']")

@@ -8,6 +8,11 @@ Given(/^a number of initiatives$/) do
   step 'an initiative "Something Else"'
 end
 
+Given(/^I am a signed in member of the initiative$/) do
+  step "a signed in user"
+  @user.join(@initiative)
+end
+
 
 When(/^I visit the initiatives website$/) do
   visit '/'

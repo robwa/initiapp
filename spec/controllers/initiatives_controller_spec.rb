@@ -66,7 +66,12 @@ describe InitiativesController do
   describe "GET show" do
     it "assigns @user" do
       get :show, id: 'test'
-      expect(assigns[:user]).to be
+      expect(assigns[:user]).to be_a_new(User)
+    end
+
+    it "assigns @text" do
+      get :show, id: 'test'
+      expect(assigns[:text]).to be_a_new(Text)
     end
 
     it "finds the initiative" do

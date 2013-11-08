@@ -12,6 +12,9 @@
   %ul#members
     - @initiative.members.each do |member|
       %li= member.email
+  %ul#texts
+    - @initiative.texts.each do |text|
+      %li= text.title + "(" + text.author.email + "): " + text.body
   = form_for(@text, url: initiative_texts_path(@initiative)) do |f|
     = f.text_field :title
     = f.text_area :body
