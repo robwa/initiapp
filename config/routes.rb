@@ -8,5 +8,7 @@ Initiapp::Application.routes.draw do
     member do
       post '', action: :join, as: :join
     end
+
+    resources :texts, only: [:create]
   end
 end

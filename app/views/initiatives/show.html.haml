@@ -12,3 +12,7 @@
   %ul#members
     - @initiative.members.each do |member|
       %li= member.email
+  = form_for(@text, url: initiative_texts_path(@initiative)) do |f|
+    = f.text_field :title
+    = f.text_area :body
+    = f.submit t('.create_text')
