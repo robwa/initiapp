@@ -7,7 +7,7 @@ class TextsController < ApplicationController
     @text.author = current_user
     @text.initiative = initiative
     if @text.save
-      redirect_to initiative
+      redirect_to initiative, notice: t('notifications.models.text.saved')
     else
       render "initiatives/show"
     end

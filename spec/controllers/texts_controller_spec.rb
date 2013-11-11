@@ -31,6 +31,11 @@ describe TextsController do
         post :create, params
         expect(response).to redirect_to(initiative)
       end
+
+      it "shows a notification message" do
+        post :create, params
+        expect(flash[:notice]).to eq(I18n.t('notifications.models.text.saved'))
+      end
     end
 
 

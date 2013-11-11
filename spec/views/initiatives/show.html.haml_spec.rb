@@ -36,6 +36,7 @@ describe "initiatives/show.html.haml" do
   context "a user is signed in" do
     before(:each) do
       initiative_stubs
+      assign(:text, mock_model("Text").as_new_record.as_null_object)
     end
 
     context "the user is not member of the initiative" do
@@ -57,12 +58,18 @@ describe "initiatives/show.html.haml" do
         render
         expect(rendered).not_to have_selector("ul#members")
       end
+
+      it "displays a form for creating a text" do
+        render
+        expect(rendered).to have_selector("form[action='#{initiative_texts_path(initiative)}'][method='post']")
+        expect(rendered).to have_selector("form input#text_title")
+        expect(rendered).to have_selector("form textarea#text_body")
+      end
     end
 
     context "the user is a member of the initiative" do
       before(:each) do
         user_stubs(sign_in: true, member: true)
-        assign(:text, mock_model("Text").as_new_record.as_null_object)
       end
 
       it "doesn't show a form for joining the initiative" do

@@ -13,6 +13,8 @@ de:
         create: Benutzerkonto konnte nicht angelegt werden!
   notifications:
     models:
+      text:
+        saved: Vielen Dank für Ihren Text.
       user:
         confirmed: Bitte melden Sie sich mit Ihrem Kennwort an.
         join: Sie sind Mitglied der Initiative.
