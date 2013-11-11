@@ -74,6 +74,11 @@ describe InitiativesController do
       expect(assigns[:text]).to be_a_new(Text)
     end
 
+    it "creates @text.author" do
+      get :show, id: 'test'
+      expect(assigns[:text].author).to be_a_new(User)
+    end
+
     it "finds the initiative" do
       expect(Initiative.friendly).to receive(:find).with('test')
       get :show, id: 'test'
@@ -144,6 +149,16 @@ describe InitiativesController do
       it "assigns @user" do
         post :join, params
         expect(assigns[:user]).to eq(user)
+      end
+
+      it "assigns @text" do
+        post :join, params
+        expect(assigns[:text]).to be_a_new(Text)
+      end
+
+      it "creates @text.author" do
+        post :join, params
+        expect(assigns[:text].author).to eq(assigns[:user])
       end
 
       it "assigns @initiative" do

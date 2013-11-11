@@ -9,6 +9,8 @@ de:
     models:
       initiative:
         create: Initiative konnte nicht erstellt werden!
+      text:
+        create: Text konnte nicht erstellt werden!
       user:
         create: Benutzerkonto konnte nicht angelegt werden!
   notifications:

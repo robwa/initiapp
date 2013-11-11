@@ -22,7 +22,7 @@ class InitiativesController < ApplicationController
   def show
     @initiative = Initiative.friendly.find(params[:id])
     @user = User.new
-    @text = Text.new
+    @text = Text.new(author: User.new)
   end
 
   # POST /initiative
@@ -38,6 +38,7 @@ class InitiativesController < ApplicationController
         redirect_to new_user_session_url, notice: t('notifications.models.user.confirmed')
       end
     else
+      @text = Text.new(author: @user)
       flash.now[:alert] = t('errors.models.user.create')
       render :show
     end

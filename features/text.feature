@@ -18,9 +18,9 @@ Feature: text
     And I enter a text with a title
     Then I see a notice, that my text has been saved
 
-  @wip
   Scenario: write a text as an anonymous user
     Given an initiative
     When I visit the initiative homepage
+    And I enter my email address
     And I enter a text with a title
     Then I see a notice, that my text has been saved

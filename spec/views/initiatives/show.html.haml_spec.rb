@@ -3,11 +3,13 @@ require 'spec_helper'
 describe "initiatives/show.html.haml" do
   let(:name) { "Test Initiative" }
   let(:initiative) { double("Initiative", name: name).as_null_object }
+  let(:user) { stub_model(User) }
   
   before(:each) do
     user_stubs
-    assign(:user, stub_model(User))
+    assign(:user, user)
     assign(:initiative, initiative)
+    assign(:text, mock_model("Text", author: user).as_new_record.as_null_object)
   end
 
   it "sets the initiative name as the page title" do
@@ -24,19 +26,26 @@ describe "initiatives/show.html.haml" do
     it "shows a form for joining the initiative" do
       render
       expect(rendered).to have_selector("form[action='#{join_initiative_path(initiative)}'][method='post']")
-      expect(rendered).to have_selector("form input[type='text']#user_email")
+      expect(rendered).to have_selector("form input[type='email']#user_email")
     end
 
     it "doesn't display the list of members" do
       render
       expect(rendered).not_to have_selector("ul#members")
     end
+
+    it "displays a form for creating a text" do
+      render
+      expect(rendered).to have_selector("form[action='#{initiative_texts_path(initiative)}'][method='post']")
+      expect(rendered).to have_selector("form#new_text input#user_email")
+      expect(rendered).to have_selector("form input#text_title")
+      expect(rendered).to have_selector("form textarea#text_body")
+    end
   end
 
   context "a user is signed in" do
     before(:each) do
       initiative_stubs
-      assign(:text, mock_model("Text").as_new_record.as_null_object)
     end
 
     context "the user is not member of the initiative" do

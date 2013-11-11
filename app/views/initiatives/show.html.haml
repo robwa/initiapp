@@ -5,7 +5,7 @@
 - unless user_is_member?
   = form_for(@user, url: join_initiative_path(@initiative)) do |f|
     - unless user_signed_in?
-      = f.text_field :email
+      = f.email_field :email
     = f.submit t('.join')
 
 - else
@@ -16,8 +16,10 @@
     - @initiative.texts.each do |text|
       %li= text.title + "(" + text.author.email + "): " + text.body
 
-- if user_signed_in?
-  = form_for(@text, url: initiative_texts_path(@initiative)) do |f|
-    = f.text_field :title
-    = f.text_area :body
-    = f.submit t('.create_text')
+= form_for(@text, url: initiative_texts_path(@initiative)) do |f|
+  - unless user_signed_in?
+    = fields_for(@text.author) do |author_fields|
+      = author_fields.email_field :email
+  = f.text_field :title
+  = f.text_area :body
+  = f.submit t('.create_text')

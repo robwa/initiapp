@@ -11,6 +11,7 @@ describe TextsController do
         } } }
 
     before(:each) do
+      user_stubs(sign_in: true)
       allow(Text).to receive(:new).and_return(the_text)
     end
 

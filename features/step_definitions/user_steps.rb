@@ -1,4 +1,4 @@
-Given(/^(?:I am )a (signed in )?user(?: "(.*?)")?$/) do |sign_in, email|
+Given(/^(?:I am )?a (signed in )?user(?: "(.*?)")?$/) do |sign_in, email|
   email = email.blank? ? "user@test.net" : email
   password = "anypassword"
   @user = User.create!(email: email, password: password)
