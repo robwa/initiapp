@@ -38,7 +38,8 @@ Feature: initiative
     | ruby.rails      | /ruby-rails      |
     | about:source    | /about-source    |
   
-
+    
+  @wip
   Scenario: join initiative as an anonymous user
     Given an initiative "Test Initiative"
     When I sign in as "some@address.email" joining "Test Initiative"
@@ -46,6 +47,7 @@ Feature: initiative
     And I see "some@address.email" in the members list
     And "some@address.email" should receive an email
 
+  @wip
   Scenario: join initiative as a known user
     Given a user "user@test.net"
     And an initiative "Test Initiative"

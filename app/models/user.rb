@@ -9,6 +9,26 @@ class User < ActiveRecord::Base
     super if persisted?
   end
 
+  def active?
+    confirmed? and has_password?
+  end
+
+  def passive?
+    not active?
+  end
+
+  def has_password?
+    encrypted_password.present?
+  end
+
+  def authorized?(current_user)
+    if current_user
+      current_user.id == id
+    else
+      passive?
+    end
+  end
+
   def member_of?(initiative)
     initiative.members.include?(self)
   end

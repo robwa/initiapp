@@ -28,15 +28,10 @@ class InitiativesController < ApplicationController
   # POST /initiative
   def join
     @initiative = Initiative.friendly.find(params[:id])
-    @user = User.find_or_create_by(email: join_email)
-    if @user.persisted?
-      unless @user.confirmed?
-        sign_in @user unless user_signed_in?
-        @user.join(@initiative)
-        redirect_to @initiative, notice: t('notifications.models.user.join')
-      else
-        redirect_to new_user_session_url, notice: t('notifications.models.user.confirmed')
-      end
+    @user = user
+    if @user.persisted? and @user.authorized?(current_user)
+      @user.join(@initiative)
+      redirect_to @initiative, notice: t('notifications.models.user.join')
     else
       @text = Text.new(author: @user)
       flash.now[:alert] = t('errors.models.user.create')
@@ -51,11 +46,15 @@ class InitiativesController < ApplicationController
     params.require(:initiative).permit(:name)
   end
 
-  def join_email
+  def user_params
+    params.require(:user).permit(:email)
+  end
+
+  def user
     if user_signed_in?
-      current_user.email
-    elsif params[:user]
-      params[:user][:email]
+      current_user
+    else
+      User.find_or_create_by(email: user_params[:email])
     end
   end
 
