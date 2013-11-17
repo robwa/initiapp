@@ -9,6 +9,8 @@ de:
     show:
       create_text: Neuen Text erstellen
       join: Dabei bleiben
+      placeholder_title: Betreff
+      placeholder_message: Nachricht
   layouts:
     application:
       sign_in: Anmelden
