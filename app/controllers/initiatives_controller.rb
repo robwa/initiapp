@@ -22,7 +22,7 @@ class InitiativesController < ApplicationController
   def show
     @initiative = Initiative.friendly.find(params[:id])
     @user = User.new
-    @text = Text.new(author: User.new)
+    @text = Text.new(author: @user)
   end
 
   # POST /initiative
@@ -36,25 +36,6 @@ class InitiativesController < ApplicationController
       @text = Text.new(author: @user)
       flash.now[:alert] = t('errors.models.user.create')
       render :show
-    end
-  end
-
-
-  private
-
-  def initiative_params
-    params.require(:initiative).permit(:name)
-  end
-
-  def user_params
-    params.require(:user).permit(:email)
-  end
-
-  def user
-    if user_signed_in?
-      current_user
-    else
-      User.find_or_create_by(email: user_params[:email])
     end
   end
 

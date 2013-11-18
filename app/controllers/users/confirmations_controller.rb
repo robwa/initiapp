@@ -1,7 +1,8 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /
   def show
-    self.resource = resource_class.find_by(confirmation_token: params[:confirmation_token]) if params[:confirmation_token].present?
+    confirmation_token = Devise.token_generator.digest(resource_class, :confirmation_token, params[:confirmation_token])
+    self.resource = resource_class.find_by(confirmation_token: confirmation_token)
     super if resource.nil? or resource.confirmed?
   end
 

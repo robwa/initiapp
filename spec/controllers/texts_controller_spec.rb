@@ -11,13 +11,12 @@ describe TextsController do
         } } }
 
     before(:each) do
-      user_stubs(sign_in: true)
+      user_stubs(sign_in: true, persist: true, authorize: true)
       allow(Text).to receive(:new).and_return(the_text)
     end
 
     it "creates a new text" do
-      expect(Text).to receive(:new).with("title" => "The Title", 
-                                         "body" => "Any content.")
+      expect(Text).to receive(:new)
       post :create, params
     end
 

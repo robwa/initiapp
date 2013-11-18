@@ -3,10 +3,12 @@ Given(/^(?:I am )?a (signed in )?user(?: "(.*?)")?$/) do |sign_in, email|
   password = "anypassword"
   @user = User.create!(email: email, password: password)
   if sign_in
+    @user.confirm!
     visit new_user_session_path
     fill_in :user_email, with: email
     fill_in :user_password, with: password
     click_on "Sign in"
+    expect(page).to have_selector 'ul#user', text: email
   end
 end
 

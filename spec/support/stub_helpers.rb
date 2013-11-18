@@ -5,6 +5,8 @@ module StubHelpers
       user = double(User, email: options[:email])
       allow(controller).to receive(:current_user).and_return(user)
       allow(user).to receive(:member_of?).and_return(options[:member])
+      allow(user).to receive(:persisted?).and_return(options[:persist])
+      allow(user).to receive(:authorized?).and_return(options[:authorize])
     end
   end
 

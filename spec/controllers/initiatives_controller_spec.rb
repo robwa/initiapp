@@ -122,13 +122,6 @@ describe InitiativesController do
         expect(response).to render_template(:show)
       end
 
-      it "signs the user in" do
-        pending "not sure how to handle this" do
-          post :join, params
-          expect(controller.current_user).to eq(user)
-        end
-      end
-
       it "calls join() on the user with the initiative" do
         expect(user).to receive(:join).with(initiative)
         post :join, params
