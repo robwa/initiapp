@@ -185,7 +185,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (~> 3.0.2.0)
+  bootstrap-sass
   coveralls
   cucumber-rails!
   database_cleaner
@@ -196,6 +196,6 @@ DEPENDENCIES
   jquery-rails
   rails (~> 4.0.0)
   rspec-rails
-  sass-rails (>= 3.2)
+  sass-rails
   sqlite3
   turbolinks

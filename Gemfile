@@ -7,9 +7,8 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'friendly_id'
 gem 'devise'
-
-gem 'sass-rails', '>= 3.2' # sass-rails needs to be higher than 3.2
-gem 'bootstrap-sass', '~> 3.0.2.0'
+gem 'sass-rails'
+gem 'bootstrap-sass'
 
 group :test do
   gem 'rspec-rails', group: :development
