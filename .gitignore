@@ -17,3 +17,6 @@
 
 # Ignore coverage results.
 /coverage
+
+# Ignore rbenv files
+.ruby-version

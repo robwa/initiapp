@@ -6,7 +6,7 @@
   = form_for(@user, url: join_initiative_path(@initiative), method: :post) do |f|
     - unless user_signed_in?
       = f.email_field :email
-    = f.submit t('.join')
+    = f.submit t('.join'), class: 'btn btn-primary'
 
 - else
   %ul#members
@@ -20,6 +20,6 @@
   - unless user_signed_in?
     = fields_for(@text.author) do |author_fields|
       = author_fields.email_field :email
-  = f.text_field :title
-  = f.text_area :body
-  = f.submit t('.create_text')
+  = f.text_field :title, class: 'form-control', placeholder: t('.placeholder_title')
+  = f.text_area :body, class: 'form-control', placeholder: t('.placeholder_message')
+  = f.submit t('.create_text'), class: 'btn btn-primary'
