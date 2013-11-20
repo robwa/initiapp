@@ -9,10 +9,12 @@ describe TextsController do
           title: "The Title",
           body: "Any content."
         } } }
+    let(:null_object) { double('null object').as_null_object }
 
     before(:each) do
       user_stubs(sign_in: true, persist: true, authorize: true)
       allow(Text).to receive(:new).and_return(the_text)
+      allow(TextsMailer).to receive(:create_notification).and_return(null_object)
     end
 
     it "creates a new text" do
