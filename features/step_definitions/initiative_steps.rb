@@ -35,8 +35,12 @@ When(/^I create an initiative with the same name$/) do
   @initiative2 = Initiative.create(name: @initiative.name)
 end
 
-When(/^I join "(.*?)"$/) do |name|
+When(/^I join (?:"(.*?)"|the initiative)(?: as "(.*?)")?$/) do |name, email|
+  name ||= @initiative.name
   visit initiative_path(Initiative.find_by!(name: name))
+  within "form#new_user" do
+    fill_in :user_email, with: email if email
+  end
   click_on I18n.t('initiatives.show.join')
 end
 
@@ -63,6 +67,12 @@ Then(/^a suffix is added to the homepage path$/) do
   expect(current_path).to match(/test.+/)
 end
 
-Then(/^I see "(.*?)" in the members list$/) do |email|
+Then(/^"(.*?)" is a member of the initiative$/) do |email|
+  user = User.find_by(email: email)
+  expect(user).to be_member_of(@initiative)
+end
+
+Then(/^I see (?:"(.*?)"|myself) in the members list$/) do |email|
+  email ||= @user.email
   expect(page).to have_selector 'ul#members', text: email
 end

@@ -39,22 +39,18 @@ Feature: initiative
     | about:source    | /about-source    |
   
     
-  @wip
   Scenario: join initiative as an anonymous user
-    Given an initiative "Test Initiative"
-    When I sign in as "some@address.email" joining "Test Initiative"
-    Then I am signed in as "some@address.email"
-    And I see "some@address.email" in the members list
+    Given an initiative
+    When I join the initiative as "some@address.email"
+    Then I am not signed in
+    But "some@address.email" is a member of the initiative
     And "some@address.email" should receive an email
 
-  @wip
   Scenario: join initiative as a known user
-    Given a user "user@test.net"
-    And an initiative "Test Initiative"
-    And an initiative "Other Initiative"
-    When I sign in as "user@test.net" joining "Test Initiative"
-    And I join "Other Initiative"
-    Then I see "user@test.net" in the members list
+    Given a signed in user
+    And an initiative
+    And I join the initiative
+    Then I see myself in the members list
 
   Scenario: join initiative as a confirmed user without password
     Given a confirmed user "user@test.net" with "password"
