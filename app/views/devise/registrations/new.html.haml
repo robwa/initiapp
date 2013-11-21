@@ -1,6 +1,6 @@
 = form_for(resource, as: resource_name, url: user_registration_path) do |f|
   = devise_error_messages!
   = f.email_field :email
-  = f.submit t ".sign_up"
+  = f.submit t ".sign_up", class: 'btn btn-primary'
 
 = render "devise/shared/links"
