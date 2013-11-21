@@ -14,7 +14,8 @@ gem 'bootstrap-sass'
 group :test do
   gem 'rspec-rails', group: :development
   gem 'cucumber-rails', require: false, github: 'cucumber/cucumber-rails'
-  gem 'coveralls', require: false
   gem 'database_cleaner'
   gem 'email_spec'
 end
+
+gem 'coveralls', require: false
