@@ -186,6 +186,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  coffee-rails
   coveralls
   cucumber-rails!
   database_cleaner
