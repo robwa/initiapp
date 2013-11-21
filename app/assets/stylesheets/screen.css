@@ -1,3 +1,12 @@
+body {
+	/*width: 75%;*/
+	margin: 0 auto;
+}
+
+#main-content {
+	
+	margin-top: 75px ;
+}
 input[type="text"],
 input[type="password"],
 input[type="email"] {
@@ -17,9 +26,6 @@ input[type="email"] {
 	-webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 	transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 	
-}
-#new_text {
-	width: 20%;
 }
 
 input {
