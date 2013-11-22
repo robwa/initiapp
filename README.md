@@ -25,9 +25,18 @@ All these parts can be put together with one simple approach: Just append text n
 ```Shell
 git clone https://github.com/robwa/initiapp.git
 cd initiapp
+bundle install
+rake db:test:prepare
 cucumber
 ```
 
 The output of the last command should give you a good impression of what the current state of development is.
 
-huhu
+```shell
+rake db:setup
+rails server
+```
+
+Should give you a running application.
+
+See [the development page in the Github wiki](http://github.com/robwa/initiapp/wiki/Development) for further information.
