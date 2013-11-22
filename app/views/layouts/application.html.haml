@@ -16,7 +16,7 @@
         %button.btn.btn-default.dropdown-toggle{type: 'button', data: {toggle: 'dropdown'} }
           %span.caret
           %span.sr-only
-        %ul.dropdown-menu{role: 'menu'}
+        %ul#user.dropdown-menu{role: 'menu'}
           - if user_signed_in?
             %li= current_user.email
             %li.divider
