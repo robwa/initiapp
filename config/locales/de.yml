@@ -3,6 +3,10 @@ de:
     registrations:
       new:
         sign_up: Benutzerkonto anlegen
+    sessions:
+      user:
+        signed_in: Erfolgreich angemeldet
+        signed_out: Erfolgreich abgemeldet
   initiatives:
     index:
       create: Neue Initiative erstellen
