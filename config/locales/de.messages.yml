@@ -2,6 +2,10 @@ de:
   devise:
     confirmations:
       unconfirmed: Benutzerkonto konnte nicht bestätigt werden!
+    sessions:
+      user:
+        signed_in: Erfolgreich angemeldet
+        signed_out: Erfolgreich abgemeldet
   errors:
     messages:
       blank: muss angegeben werden

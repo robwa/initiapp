@@ -15,6 +15,7 @@ de:
       join: Dabei bleiben
       placeholder_title: Betreff
       placeholder_message: Nachricht
+      placeholder_mail: E-Mail
   layouts:
     application:
       sign_in: Anmelden
