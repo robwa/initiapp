@@ -5,7 +5,7 @@
 - unless user_is_member?
   = form_for(@user, url: join_initiative_path(@initiative), method: :post) do |f|
     - unless user_signed_in?
-      = f.email_field :email
+      = f.email_field :email, placeholder: t('.placeholder_mail')
     = f.submit t('.join'), class: 'btn btn-primary'
 
 - else
