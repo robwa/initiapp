@@ -85,3 +85,19 @@ input[type="email"] {
 input {
 	margin: 10px 0;
 }
+
+/*### Nachrichten ###*/
+ul#texts .glyphicon {
+	margin-right: 0.25em;
+}
+
+ul#texts li {
+	padding: 5px 5px;
+	border-bottom: 1px solid silver;
+}
+
+ul#texts li:hover {
+	cursor: pointer;
+	color: #fff;
+	background: #aaa;
+}
