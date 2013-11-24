@@ -12,7 +12,7 @@ de:
       create_text: Neuen Text erstellen
       join: Dabei bleiben
       explain: Du findest diese Initiative interessant. Dann bleib doch dabei!
-      explain-not-signed-in: Hinterlass uns einfach Deine E-Mail-Adresse
+      explain-not-signed-in: Hinterlass uns einfach Deine E-Mail-Adresse.
       placeholder_title: Betreff
       placeholder_message: Nachricht
       placeholder_mail: Deine E-Mail Adresse
