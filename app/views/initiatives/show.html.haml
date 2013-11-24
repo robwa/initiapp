@@ -1,25 +1,38 @@
 - title @initiative.name
 
-%h1= @initiative.name
+//%h1= @initiative.name
 
 - unless user_is_member?
-  = form_for(@user, url: join_initiative_path(@initiative), method: :post) do |f|
-    - unless user_signed_in?
-      = f.email_field :email, placeholder: t('.placeholder_mail')
-    = f.submit t('.join'), class: 'btn btn-primary'
+  %div.container
+    %div.content-bubble.col-md-6
+      %h3= t('.join')
+      %p= t('.explain')
+      = form_for(@user, url: join_initiative_path(@initiative), method: :post) do |f|
+        - unless user_signed_in?
+          %p= t('.explain-not-signed-in')
+          = f.email_field :email, class: 'form-control', placeholder: t('.placeholder_mail')
+        = f.submit t('.join'), class: 'btn btn-primary'
 
 - else
-  %ul#members
-    - @initiative.members.each do |member|
-      %li= member.email
-  %ul#texts
-    - @initiative.texts.each do |text|
-      %li= text.title + "(" + text.author.email + "): " + text.body
-
-= form_for(@text, url: initiative_texts_path(@initiative)) do |f|
-  - unless user_signed_in?
-    = fields_for(@text.author) do |author_fields|
-      = author_fields.email_field :email
-  = f.text_field :title, class: 'form-control', placeholder: t('.placeholder_title')
-  = f.text_area :body, class: 'form-control', placeholder: t('.placeholder_message')
-  = f.submit t('.create_text'), class: 'btn btn-primary'
+  %div.container
+    %div.content-bubble.col-md-6
+      %h3= t('.captions.memberlist')
+      %ul#members
+        - @initiative.members.each do |member|
+          %li= member.email
+  %div.container
+    %div.content-bubble.col-md-6
+      %h3= t('.captions.mailings')
+      %ul#texts
+        - @initiative.texts.each do |text|
+          %li= text.title + "(" + text.author.email + "): " + text.body
+%div.container
+  %div.content-bubble.col-md-6
+    %h3= t('.captions.sent-mail-to-ini')
+    = form_for(@text, url: initiative_texts_path(@initiative)) do |f|
+      - unless user_signed_in?
+        = fields_for(@text.author) do |author_fields|
+          = author_fields.email_field :email, class: 'form-control', placeholder: t('.placeholder_mail')
+      = f.text_field :title, class: 'form-control', placeholder: t('.placeholder_title')
+      = f.text_area :body, class: 'form-control', placeholder: t('.placeholder_message')
+      = f.submit t('.create_text'), class: 'btn btn-primary'

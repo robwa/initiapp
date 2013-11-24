@@ -2,20 +2,24 @@ de:
   devise:
     registrations:
       new:
-        sign_up: Benutzerkonto anlegen
-    sessions:
-      user:
-        signed_in: Erfolgreich angemeldet
-        signed_out: Erfolgreich abgemeldet
+        sign_up: Benutzerkonto anlegen    
   initiatives:
     index:
       create: Neue Initiative erstellen
+      placeholder_create: Name der Initiative
+      existing-ini-list: Liste aller Initiativen
     show:
       create_text: Neuen Text erstellen
       join: Dabei bleiben
+      explain: Du findest diese Initiative interessant. Dann bleib doch dabei!
+      explain-not-signed-in: Hinterlass uns einfach Deine E-Mail-Adresse
       placeholder_title: Betreff
       placeholder_message: Nachricht
-      placeholder_mail: E-Mail
+      placeholder_mail: Deine E-Mail Adresse
+      captions:
+        memberlist: Mitglieder dieser Initiative
+        mailings: Nachrichten dieser Initiative
+        sent-mail-to-ini: Dieser Initiative eine E-Mail schreiben
   layouts:
     application:
       sign_in: Anmelden
