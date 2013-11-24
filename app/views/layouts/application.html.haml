@@ -6,27 +6,28 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
 
-  %body.container
-    %header#main-header.row
-      %div#ini-logo.pull-left
-        %a{href: '#'}
-          %img{src: 'ini_logo.png', alt: 'initiative logo'}
-      %div#user-control.btn-group.pull-right
-        %button.btn.btn-default{type: 'button'} user
-        %button.btn.btn-default.dropdown-toggle{type: 'button', data: {toggle: 'dropdown'} }
-          %span.caret
-          %span.sr-only
-        %ul#user.dropdown-menu{role: 'menu'}
-          - if user_signed_in?
-            %li= current_user.email
-            %li.divider
-            %li= link_to t('.sign_out'), destroy_user_session_path, method: :delete
-          - else
-            %li.divider
-            %li= link_to t('.sign_in'), new_user_session_path
+  %body
+    %section#page-content.container
+      %header#main-header.row
+        %div#ini-logo.pull-left
+          %a{href: '#'}
+            %img{src: 'ini_logo_02.png', alt: 'initiative logo'}
+        %div#user-control.btn-group.pull-right
+          %button.btn.btn-default{type: 'button'} user
+          %button.btn.btn-default.dropdown-toggle{type: 'button', data: {toggle: 'dropdown'} }
+            %span.caret
+            %span.sr-only
+          %ul#user.dropdown-menu{role: 'menu'}
+            - if user_signed_in?
+              %li= current_user.email
+              %li.divider
+              %li= link_to t('.sign_out'), destroy_user_session_path, method: :delete
+            - else
+              %li.divider
+              %li= link_to t('.sign_in'), new_user_session_path
 
-    %div#main-content.row
-      - flash.each do |name, message|
-        = content_tag :div, message, class: name
+      %div#main-content.row
+        - flash.each do |name, message|
+          = content_tag :div, message, class: name
 
-      = yield
+        = yield

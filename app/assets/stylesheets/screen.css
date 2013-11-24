@@ -1,12 +1,35 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic);
+
 body {
-	/*width: 75%;*/
+	background: #fafafa;
+	font-family: 'Source Sans Pro';
+	font-size: 16px;
 	margin: 0 auto;
+	padding: 20px 20px 20px 20px;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Source Sans Pro';
+	font-weight: normal;
+}
+
+#page-content {
+	/*background: #FFF;*/
+	/*border: 1px solid silver;*/
+}
+
+#main-header {
+	background: #FFF;
+	padding: 20px;
+	border-radius: 15px;
+	-webkit-box-shadow: 0px 0px 20px #d1d1d1;
+	        box-shadow: 0px 0px 20px #d1d1d1;
 }
 
 #main-content {
 	
 	margin-top: 75px ;
 }
+
 input[type="text"],
 input[type="password"],
 input[type="email"] {
