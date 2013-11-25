@@ -19,5 +19,5 @@ Then(/^the text "(.*?)" with the title "(.*?)" is shown on the page$/) do |body,
 end
 
 Then(/^I see a notice, that my text has been saved$/) do
-  expect(page).to have_selector("div.notice", text: I18n.t('notifications.models.text.saved'))
+  expect(page).to have_content(I18n.t('notifications.models.text.saved'))
 end

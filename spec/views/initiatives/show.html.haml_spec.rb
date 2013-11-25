@@ -18,8 +18,10 @@ describe "initiatives/show.html.haml" do
   end
 
   it "displays the initiative name as the page header" do
-    render
-    expect(rendered).to have_selector('h1', text: name)
+    pending "not sure where the initiative name will be shown" do
+      render
+      expect(rendered).to have_selector('h1', text: name)
+    end
   end
 
   context "no user is signed in" do
