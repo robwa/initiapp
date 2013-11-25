@@ -30,6 +30,8 @@
             %span= text.author.email + ": " + text.title
             %span.glyphicon.glyphicon-collapse-down.pull-right
             %div.preview-mail= text.body
+            %div{id: "text#{text.id}"}
+            = link_to "Text holen", initiative_text_path(@initiative, text), remote: true
             
 %div.container
   %div.content-bubble.col-md-6

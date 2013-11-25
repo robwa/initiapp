@@ -14,4 +14,9 @@ class TextsController < ApplicationController
     end
   end
 
+  # GET /initiative/texts/1
+  def show
+    @text = Text.find(params[:id])
+  end
+
 end
