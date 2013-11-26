@@ -96,11 +96,6 @@ describe InitiativesController do
       post :join, params
     end
 
-    it "checks if there already exists a user with the given address" do
-      expect(User).to receive(:find_or_create_by).and_return(user)
-      post :join, params
-    end
-
     context "when there is no user with this email address" do
       it "creates a new user" do
         expect(User).to receive(:new)
@@ -111,16 +106,15 @@ describe InitiativesController do
         expect(user).to receive(:save)
         post :join, params
       end
+
+      it "doesn't send devise's default confirmation email" do
+        expect(user).not_to receive(:send_confirmation_instructions)
+        post :join, params
+      end
     end
 
     context "when the user was (already) persisted successfully" do
       before { allow(user).to receive(:persisted?).and_return(true) }
-
-      it "renders show if the user is active (should be handled by ajax)" do
-        allow(user).to receive(:active?).and_return(true)
-        post :join, params
-        expect(response).to render_template(:show)
-      end
 
       it "calls join() on the user with the initiative" do
         expect(user).to receive(:join).with(initiative)

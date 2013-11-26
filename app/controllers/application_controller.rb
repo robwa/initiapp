@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   protected
@@ -17,11 +15,21 @@ class ApplicationController < ActionController::Base
     params.require(:user).permit(:email)
   end
 
-  def user
+  def find_or_create_actable_user
     if user_signed_in?
       current_user
-    else
-      User.find_or_create_by(email: user_params[:email])
+    else 
+      begin
+        user = User.find_by(email: user_params[:email])
+        unless user
+          user = User.new(email: user_params[:email])
+          user.skip_confirmation_notification!
+          user.save
+        end
+        user
+      rescue ActiveRecord::RecordNotUnique
+        retry
+      end
     end
   end
 end

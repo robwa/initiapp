@@ -5,28 +5,18 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :texts
 
+  scope :passive, -> { where(confirmed_at: nil) }
+
   def password_required?
     super if persisted?
   end
 
   def active?
-    confirmed? and has_password?
+    confirmed?
   end
 
   def passive?
     not active?
-  end
-
-  def has_password?
-    encrypted_password.present?
-  end
-
-  def authorized?(current_user)
-    if current_user
-      current_user.id == id
-    else
-      passive?
-    end
   end
 
   def member_of?(initiative)
