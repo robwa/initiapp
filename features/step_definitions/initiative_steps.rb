@@ -8,7 +8,7 @@ Given(/^a number of initiatives$/) do
   step 'an initiative "Something Else"'
 end
 
-Given(/^I am a member of the initiative$/) do
+Given(/^I am an active member of the initiative$/) do
   step "I am an active user"
   @user.join(@initiative)
 end

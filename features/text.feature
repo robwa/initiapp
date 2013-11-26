@@ -6,7 +6,7 @@ Feature: text
 
   Scenario: write a text as a member
     Given an initiative
-    And I am a member of the initiative
+    And I am an active member of the initiative
     When I visit the initiative homepage
     And I enter the text "My special Text." with the title "Test Title"
     Then the text "My special Text." with the title "Test Title" is shown on the page
