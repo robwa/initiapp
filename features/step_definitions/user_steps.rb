@@ -1,22 +1,27 @@
-Given(/^(?:I am )?a (signed in )?user(?: "(.*?)")?$/) do |sign_in, email|
-  email = email.blank? ? "user@test.net" : email
-  password = "anypassword"
-  @user = User.create!(email: email, password: password)
-  if sign_in
+Given /^I am an? (signed out )?(anonymous|passive|active) user$/ do |no_sign_in, state|
+  email = password = nil
+  email ||= "user@test.net"
+  password ||= "anypassword"
+
+  case state
+  when "anonymous"
+    @email = email
+  when "passive"
+    @user = User.create!(email: email)
+  when "active"
+    @user = User.create!(email: email, password: password)
     @user.confirm!
-    visit new_user_session_path
-    fill_in :user_email, with: email
-    fill_in :user_password, with: password
-    click_on "Sign in"
-    expect(page).to have_selector 'ul#user', text: email
+    step "I sign in" unless no_sign_in
   end
 end
 
-Given(/^a confirmed user "(.*?)" with "(.*?)"$/) do |email, password|
-  @user = User.create!(email: email, password: password)
-  @user.confirm!
-end
 
+When /^I sign in$/ do
+  visit new_user_session_path
+  fill_in :user_email, with: @user.email
+  fill_in :user_password, with: @user.password
+  click_on "Sign in"
+end
 
 When(/^I request confirmation instructions$/) do
   visit new_user_confirmation_url

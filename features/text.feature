@@ -6,14 +6,14 @@ Feature: text
 
   Scenario: write a text as a member
     Given an initiative
-    And I am a signed in member of the initiative
+    And I am a member of the initiative
     When I visit the initiative homepage
     And I enter the text "My special Text." with the title "Test Title"
     Then the text "My special Text." with the title "Test Title" is shown on the page
 
-  Scenario: write a text as a known user
+  Scenario: write a text as an active user
     Given an initiative
-    And I am a signed in user
+    And I am an active user
     When I visit the initiative homepage
     And I enter a text with a title
     Then I see a notice, that my text has been saved

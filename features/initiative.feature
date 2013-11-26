@@ -46,14 +46,14 @@ Feature: initiative
     But "some@address.email" is a member of the initiative
     And "some@address.email" should receive an email
 
-  Scenario: join initiative as a known user
-    Given a signed in user
-    And an initiative
-    And I join the initiative
+  Scenario: join initiative as an active user
+    Given an initiative
+    And I am an active user
+    When I join the initiative
     Then I see myself in the members list
 
-  Scenario: join initiative as a confirmed user without password
-    Given a confirmed user "user@test.net" with "password"
-    And an initiative "Test Initiative"
-    When I try to sign in as "user@test.net" joining "Test Initiative"
+  Scenario: join initiative as a signed out active user
+    Given an initiative
+    And I am a signed out active user
+    When I join the initiative
     Then I am not signed in

@@ -8,8 +8,8 @@ Given(/^a number of initiatives$/) do
   step 'an initiative "Something Else"'
 end
 
-Given(/^I am a signed in member of the initiative$/) do
-  step "a signed in user"
+Given(/^I am a member of the initiative$/) do
+  step "I am an active user"
   @user.join(@initiative)
 end
 
@@ -42,14 +42,6 @@ When(/^I join (?:"(.*?)"|the initiative)(?: as "(.*?)")?$/) do |name, email|
     fill_in :user_email, with: email if email
   end
   click_on I18n.t('initiatives.show.join')
-end
-
-When(/^I (?:try to |)sign in as "(.*?)" joining "(.*?)"$/) do |user, initiative|
-  visit initiative_path(Initiative.find_by!(name: initiative))
-  within "form#new_user" do
-    fill_in :user_email, with: user
-    click_on I18n.t('initiatives.show.join')
-  end
 end
 
 
