@@ -1,7 +1,4 @@
-Then /^I receive no email$/ do
-  step "\"#{@user.email}\" should receive no email"
-end  
-
-Then /^I receive an email$/ do
-  step "\"#{@user.email}\" should receive an email"
+Then(/^I receive an email confirming the creation of the initiative$/) do  
+  subject ||= "test"
+  step "I should receive an email with subject \"#{subject}\""
 end

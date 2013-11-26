@@ -45,7 +45,7 @@ Feature: initiative
     When I join the initiative
     Then I am not signed in
     But I am a member of the initiative
-    And I receive an email
+    And I should receive an email
 
   Scenario: join initiative as an active user
     Given an initiative
