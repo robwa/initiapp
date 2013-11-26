@@ -26,13 +26,16 @@ When(/^I visit the initiative homepage$/) do
   visit initiative_path(@initiative)
 end
 
-When(/^I submit "(.*?)" as the name of the new initiative$/) do |name|
+When(/^I create an initiative$/) do
+  name ||= "Test Initiative"
+  visit initiatives_path
   fill_in :initiative_name, with: name
   click_on I18n.t('initiatives.index.create')
+  @initiative = Initiative.find_by(name: name)
 end
 
 When(/^I create an initiative with the same name$/) do
-  @initiative2 = Initiative.create(name: @initiative.name)
+  @initiative2 = Initiative.create!(name: @initiative.name)
 end
 
 When(/^I join (?:"(.*?)"|the initiative)(?: as "(.*?)")?$/) do |name, email|
@@ -45,7 +48,8 @@ When(/^I join (?:"(.*?)"|the initiative)(?: as "(.*?)")?$/) do |name, email|
 end
 
 
-Then(/^I see the homepage of "(.*?)"$/) do |name|
+Then(/^I see the homepage of (?:the initiative|"(.*?)")$/) do |name|
+  name ||= @initiative.name
   expect(page).to have_title name
   #expect(page).to have_selector 'h1', text: name
 end

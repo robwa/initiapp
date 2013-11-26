@@ -6,8 +6,8 @@ Feature: initiative
 
   Scenario: create initiative
     When I visit the initiatives website
-    And I submit "Test Initiative" as the name of the new initiative
-    Then I see the homepage of "Test Initiative"
+    And I create an initiative
+    Then I see the homepage of the initiative
 
   Scenario: create initiative with existing name
     Given an initiative "test"

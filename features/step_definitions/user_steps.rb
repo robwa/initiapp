@@ -1,5 +1,4 @@
 Given /^I am an? (signed out )?(anonymous|passive|active) user$/ do |no_sign_in, state|
-  email = password = nil
   email ||= "user@test.net"
   password ||= "anypassword"
 
