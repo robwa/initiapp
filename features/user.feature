@@ -9,4 +9,4 @@ Feature: user
     When I request confirmation instructions
     And I visit the confirmation page
     And I confirm my account
-    Then I am a confirmed user
+    Then I should be an active user

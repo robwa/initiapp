@@ -40,15 +40,18 @@ When(/^I confirm my account$/) do
 end
 
 
+Then /^I should be an? (passive|active) user$/ do |state|
+  @user.reload
+  case state
+  when "passive" then expect(@user).to be_passive
+  when "active" then expect(@user).to be_active
+  end
+end
+
 Then(/^I am signed in as "(.*)"$/) do |user|
   expect(page).to have_selector 'ul#user', text: user
 end
 
 Then(/^I am not signed in$/) do
   expect(page).to have_selector 'ul#user', text: I18n.t('layouts.application.sign_in')
-end
-
-Then(/^I am a confirmed user$/) do
-  @user.reload
-  expect(@user).to be_confirmed
 end
