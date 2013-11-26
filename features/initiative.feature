@@ -41,10 +41,11 @@ Feature: initiative
     
   Scenario: join initiative as an anonymous user
     Given an initiative
-    When I join the initiative as "some@address.email"
+    And I am an anonymous user
+    When I join the initiative
     Then I am not signed in
-    But "some@address.email" is a member of the initiative
-    And "some@address.email" should receive an email
+    But I am a member of the initiative
+    And I receive an email
 
   Scenario: join initiative as an active user
     Given an initiative

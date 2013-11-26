@@ -41,6 +41,7 @@ end
 
 
 Then /^I should be an? (passive|active) user$/ do |state|
+  @user ||= User.find_by(email: @email)
   @user.reload
   case state
   when "passive" then expect(@user).to be_passive
