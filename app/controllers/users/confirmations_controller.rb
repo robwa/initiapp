@@ -8,10 +8,10 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # PATCH /
   def confirm
-    confirmation_token = params.require(resource_name)[:confirmation_token]
+    confirmation_token = params[:confirmation_token]
     self.resource = resource_class.find_by(confirmation_token: confirmation_token)
     unless resource.nil?
-      if resource.update(resource_params)
+      if resource.update(resource_params.permit(:password, :password_confirmation))
         resource.confirm!
         sign_in(resource)
         set_flash_message(:notice, :confirmed)
@@ -24,11 +24,4 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
       redirect_to action: :show, confirmation_token: confirmation_token
     end
   end
-
-
-  private
-
-  def resource_params
-    params.require(:user).except(:confirmation_token).permit(:password, :password_confirmation)
-  end  
 end
