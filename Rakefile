@@ -5,4 +5,4 @@ require File.expand_path('../config/application', __FILE__)
 
 Initiapp::Application.load_tasks
 
-task default: [:spec, :cucumber, 'coveralls:push']
+#task default: [:spec, :cucumber, 'coveralls:push']
