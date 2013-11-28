@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :memberships
+  has_many :initiatives, through: :memberships
   has_many :texts
 
   scope :passive, -> { where(confirmed_at: nil) }

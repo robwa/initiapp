@@ -31,6 +31,7 @@ class InitiativesController < ApplicationController
     @user = find_or_create_actable_user
     if @user and @user.persisted?
       @user.join(@initiative)
+      InitiativesMailer::join(@user).deliver unless @user.active?
       redirect_to @initiative, notice: t('notifications.models.user.join')
     else
       @user ||= User.new(email: user_params[:email])

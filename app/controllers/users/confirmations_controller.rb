@@ -17,6 +17,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
         set_flash_message(:notice, :confirmed)
         redirect_to after_confirmation_path_for(resource_name, resource)
       else
+        set_flash_message(:alert, :unconfirmed)
         render :show
       end
     else

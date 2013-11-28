@@ -1,4 +1,3 @@
-@wip
 Feature: passive
 
   In order to prevent abusing email addresses

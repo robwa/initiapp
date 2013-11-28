@@ -20,6 +20,9 @@ de:
         memberlist: Mitglieder dieser Initiative
         mailings: Nachrichten dieser Initiative
         sent-mail-to-ini: Dieser Initiative eine E-Mail schreiben
+  initiatives_mailer:
+    join:
+      subject: Passive Mitgliedschaft in Initiativen
   layouts:
     application:
       sign_in: Anmelden

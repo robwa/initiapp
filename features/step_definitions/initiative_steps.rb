@@ -41,6 +41,7 @@ end
 When(/^I join (?:"(.*?)"|the initiative)$/) do |name|
   name ||= @initiative.name
   email ||= @email
+  email ||= @user.email if @user and @user.passive?
   visit initiative_path(Initiative.find_by!(name: name))
   within "form#new_user" do
     fill_in :user_email, with: email if email
