@@ -12,6 +12,8 @@ Given /^I am an? (signed out )?(anonymous|passive|active) user$/ do |no_sign_in,
     @user.confirm!
     step "I sign in" unless no_sign_in
   end
+  
+  reset_mailer
 end
 
 

@@ -1,4 +1,4 @@
 Then(/^I receive an email confirming the creation of the initiative$/) do  
   subject ||= "test"
-  step "I should receive an email with subject \"#{subject}\""
+  step "I should receive an email"
 end

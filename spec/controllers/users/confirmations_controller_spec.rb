@@ -15,14 +15,15 @@ describe Users::ConfirmationsController do
 
   describe "PATCH confirm" do
     let(:user) { User.create!(email: "test@test.org") }
-    let(:params) { { user: { 
-          confirmation_token: user.confirmation_token, 
+    let(:params) { { 
+        confirmation_token: user.confirmation_token,
+        user: { 
           password: password,
           password_confirmation: password_confirmation
         } } }
 
     it "redirects to show for invalid confirmation token" do
-      patch :confirm, user: { confirmation_token: 'abcde' }
+      patch :confirm, confirmation_token: 'abcde'
       expect(response).to redirect_to(action: :show, confirmation_token: 'abcde')
     end
 
