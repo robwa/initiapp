@@ -21,6 +21,7 @@ end
 
 group :development do
   gem 'sqlite3', group: :test
+  gem 'debugger'
 end
 
 group :production do
