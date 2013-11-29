@@ -22,6 +22,9 @@ Initiapp::Application.configure do
   # Set host for URLs in mails.
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
+  # Use a global email sender.
+  config.action_mailer.default_options = { from: "mail@example.org" }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

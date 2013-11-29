@@ -32,7 +32,10 @@ Initiapp::Application.configure do
   config.action_mailer.delivery_method = :test
 
   # Set host for URLs in mails.
-  config.action_mailer.default_url_options = { host: 'test_url_options' }
+  config.action_mailer.default_url_options = { host: 'localhost' }
+
+  # Use a global email sender.
+  config.action_mailer.default_options = { from: "mail@example.org" }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr

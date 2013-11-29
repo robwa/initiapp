@@ -68,6 +68,9 @@ Initiapp::Application.configure do
   # Set host for URLs in mails.
   config.action_mailer.default_url_options = { host: 'production_url_options' }
 
+  # Use a global email sender.
+  config.action_mailer.default_options = { from: "mail@example.org" }
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
   config.i18n.fallbacks = true

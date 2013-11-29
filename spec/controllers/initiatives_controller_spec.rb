@@ -111,6 +111,13 @@ describe InitiativesController do
         expect(user).not_to receive(:send_confirmation_instructions)
         post :join, params
       end
+
+      it "sends join notification email" do
+        mail = double("Mail")
+        expect(InitiativesMailer).to receive(:join).and_return(mail)
+        expect(mail).to receive(:deliver)
+        post :join, params
+      end
     end
 
     context "when the user was (already) persisted successfully" do

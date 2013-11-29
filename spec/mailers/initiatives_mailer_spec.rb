@@ -2,20 +2,20 @@ require "spec_helper"
 
 describe InitiativesMailer do
   describe "join" do
-    let(:mail) { InitiativesMailer.join }
+    let(:user) { User.create!(email: "test@test.net") }
+    let(:mail) { InitiativesMailer.join(user) }
 
-    it "renders the headers" do
-      pending "implement spec" do
-        mail.subject.should eq("Join")
-        mail.to.should eq(["to@example.org"])
-        mail.from.should eq(["from@example.com"])
-      end
+    it "sets subject and recipient" do
+      expect(mail.subject).to eq(I18n.t('initiatives_mailer.join.subject'))
+      expect(mail.to).to eq([user.email])
+    end
+
+    it "sets from to the global from address" do
+      expect(mail.from).to eq([Rails.configuration.action_mailer.default_options[:from]])
     end
 
     it "renders the body" do
-      pending "implement spec" do
-        mail.body.encoded.should match("Hi")
-      end
+      expect(mail.body.encoded).not_to be_empty
     end
   end
 
