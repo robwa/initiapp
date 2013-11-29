@@ -32,7 +32,7 @@ end
 
 When(/^I visit the confirmation page$/) do
   open_last_email
-  visit_in_email "Confirm"
+  click_first_link_in_email
 end
 
 When(/^I confirm my account$/) do
