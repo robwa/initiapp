@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  attr_reader :raw_confirmation_token
+
   has_many :memberships
   has_many :initiatives, through: :memberships
   has_many :texts
@@ -18,6 +20,10 @@ class User < ActiveRecord::Base
 
   def passive?
     not active?
+  end
+
+  def generate_confirmation_token!
+    super
   end
 
   def member_of?(initiative)
