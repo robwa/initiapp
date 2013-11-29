@@ -1,8 +1,8 @@
 de:
   devise:
-    registrations:
-      new:
-        sign_up: Benutzerkonto anlegen    
+    mailer:
+      confirmation_instructions:
+        subject: Benutzerkonto aktivieren
   initiatives:
     index:
       create: Neue Initiative erstellen
@@ -22,6 +22,8 @@ de:
         sent-mail-to-ini: Dieser Initiative eine E-Mail schreiben
   initiatives_mailer:
     join:
+      activate: Wenn Du Dich aktiv an einer Initiative beteiligen möchtest, folge dem folgenden Verweis, um ein aktives Benutzerkonto zu erstellen
+      member: Du bist unter Deiner E-Mail-Adresse <%{email}> passives Mitglied in folgenden Initiativen
       subject: Passive Mitgliedschaft in Initiativen
   layouts:
     application:
@@ -31,3 +33,9 @@ de:
     confirmations:
       show:
         confirm: Benutzerkonto bestätigen
+    mailer:
+      confirmation_instructions:
+        account: Du hast unter Deiner E-Mail-Adresse <%{email}> ein passives Benutzerkonto angelegt.
+    registrations:
+      new:
+        sign_up: Benutzerkonto anlegen    

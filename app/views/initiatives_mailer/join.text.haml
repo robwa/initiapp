@@ -1,8 +1,8 @@
-Du bist unter Deiner E-Mail-Adresse <#{@user.email}> passives Mitglied in folgenden Initiativen:
+#{raw t('.member', email: @user.email)}:
 \
 - @user.initiatives.each do |i|
   \  * #{i.name}
   \    #{initiative_url(i)}
   \
-Wenn Du Dich aktiv an einer Initiative beteiligen möchtest, folge einfach dem folgenden Verweis, um ein aktives Benutzerkonto zu erstellen:
-#{confirmation_url(@user, :confirmation_token => @token)}
+#{t('.activate')}:
+= confirmation_url(@user, :confirmation_token => @token)

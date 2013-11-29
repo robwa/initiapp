@@ -1,0 +1,4 @@
+= raw t('.account', email: @email)
+\
+#{t('initiatives_mailer.join.activate')}:
+= confirmation_url(@resource, confirmation_token: @token)
