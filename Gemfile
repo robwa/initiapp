@@ -12,7 +12,6 @@ gem 'devise'
 gem 'bootstrap-sass'
 
 group :test do
-  gem 'coveralls', group: :development, require: false
   gem 'rspec-rails', group: :development
   gem 'cucumber-rails', require: false, github: 'cucumber/cucumber-rails'
   gem 'database_cleaner'
