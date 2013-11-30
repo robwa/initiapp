@@ -8,9 +8,20 @@ Given(/^a number of initiatives$/) do
   step 'an initiative "Something Else"'
 end
 
-Given(/^I am an? (active|passive) member of the initiative$/) do |state|
+Given(/^I am an? (active |passive )?member of the initiative(?: as well)?$/) do |state|
+  state ||= "active"
   step "I am an #{state} user"
   @user.join(@initiative)
+end
+
+Given(/^an initiative with several members$/) do
+  step "an initiative"
+  User.create!(email: "test1@test.net").join(@initiative)
+  User.create!(email: "test2@test.net").join(@initiative)
+  User.create!(email: "test3@test.net").join(@initiative)
+  User.create!(email: "test4@test.net").join(@initiative)
+  User.create!(email: "test5@test.net").join(@initiative)
+  reset_mailer
 end
 
 

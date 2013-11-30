@@ -7,7 +7,9 @@ class TextsController < ApplicationController
     @text = Text.new(text_params.merge({ initiative: @initiative, author: @user }))
     
     if @user and @user.persisted? and @text.save
-      TextsMailer.create_notification(@text).deliver
+      @initiative.members.each do |member|
+        TextsMailer.create(@text, member).deliver unless @user.id == member.id
+      end
       redirect_to @initiative, notice: t('notifications.models.text.saved')
     else
       @user ||= User.new(email: user_params[:email])

@@ -1,8 +1,7 @@
 class TextsMailer < ActionMailer::Base
-  default from: "from@example.com"
-
-  def create_notification(text)
+  def create(text, user)
     @text = text
-    mail(to: @text.author.email, subject: @text.title)
+    subject = "[#{@text.initiative.slug}] #{@text.title}"
+    mail(to: user.email, subject: subject)
   end
 end
