@@ -9,8 +9,8 @@ Given(/^a number of initiatives$/) do
 end
 
 Given(/^I am an? (active |passive )?member of the initiative(?: as well)?$/) do |state|
-  state ||= "active"
-  step "I am an #{state} user"
+  state ||= "active "
+  step "I am an #{state}user"
   @user.join(@initiative)
 end
 
@@ -76,7 +76,7 @@ Then(/^a suffix is added to the homepage path$/) do
   expect(current_path).to match(/test.+/)
 end
 
-Then(/^I am a member of the initiative$/) do
+Then(/^I should be a member of the initiative$/) do
   @user ||= User.find_by(email: @email)
   expect(@user).to be_member_of(@initiative)
 end

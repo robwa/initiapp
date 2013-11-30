@@ -44,7 +44,7 @@ Feature: initiative
     And I am an anonymous user
     When I join the initiative
     Then I am not signed in
-    But I am a member of the initiative
+    But I should be a member of the initiative
 
   Scenario: join initiative as an active user
     Given an initiative
