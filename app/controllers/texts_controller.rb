@@ -5,6 +5,7 @@ class TextsController < ApplicationController
     @initiative = Initiative.friendly.find(params[:initiative_id])
     @user = find_or_create_actable_user
     @text = Text.new(text_params.merge({ initiative: @initiative, author: @user }))
+    
     if @user and @user.persisted? and @text.save
       TextsMailer.create_notification(@text).deliver
       redirect_to @initiative, notice: t('notifications.models.text.saved')

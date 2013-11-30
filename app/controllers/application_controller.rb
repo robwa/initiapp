@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
           user.skip_confirmation_notification!
           user.save
         end
-        user
+        user if user.passive?
       rescue ActiveRecord::RecordNotUnique
         retry
       end
