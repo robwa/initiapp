@@ -27,7 +27,9 @@
         - @initiative.topics.each do |topic|
           %li
             %span.glyphicon.glyphicon-envelope
-            %span= topic.head.author.email + ": " + topic.name
+            %span
+              = topic.head.author.email + ": "
+              = link_to topic.name, initiative_topic_path(@initiative, topic)
             %span.glyphicon.glyphicon-collapse-down.pull-right
             %div.preview-mail= topic.head.body
             %div{id: "topic#{topic.id}"}

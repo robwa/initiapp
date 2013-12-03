@@ -1,2 +1,7 @@
-%h1 Topics#show
-%p Find me in app/views/topics/show.html.haml
+- title "#{@topic.name} · #{@initiative.name}"
+
+%h2= @topic.name
+
+%ul#texts
+  - @topic.texts.each do |text|
+    %li= text.author.email + ": " + text.body

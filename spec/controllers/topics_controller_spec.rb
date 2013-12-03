@@ -58,4 +58,8 @@ describe TopicsController do
     end
   end
 
+
+  describe "GET show" do
+  end
+
 end

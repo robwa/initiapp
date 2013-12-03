@@ -1,4 +1,4 @@
-Feature: create text
+Feature: create topic
 
   In order to participate in an initiative
   As any user
@@ -42,7 +42,6 @@ Feature: create text
     Then I see a notice, that my text has been saved
 
 
-  @wip
   Scenario: receive notification for text
     Given an initiative with several members
     When I visit the initiative homepage
@@ -50,7 +49,6 @@ Feature: create text
     And I enter a text with a title
     Then each member of the initiative receives an email
 
-  @wip
   Scenario: receive notification for text as a member
     Given an initiative with several members
     And I am a member of the initiative as well

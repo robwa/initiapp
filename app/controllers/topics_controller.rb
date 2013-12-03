@@ -27,6 +27,7 @@ class TopicsController < ApplicationController
 
   # GET /initiative/topics/1
   def show
+    @initiative = Initiative.friendly.find(params[:initiative_id])
     @topic = Topic.find(params[:id])
   end
 
