@@ -4,7 +4,7 @@ class Initiative < ActiveRecord::Base
 
   has_many :memberships
   has_many :members, through: :memberships, source: :user
-  has_many :texts
+  has_many :topics
 
   validates_presence_of :name
 end

@@ -1,5 +1,5 @@
 When(/^I enter my email address$/) do
-  within "form#new_text" do
+  within "form#new_topic" do
     fill_in :user_email, with: "test@user.net"
   end
 end
@@ -7,7 +7,7 @@ end
 When(/^I enter (?:a|the) text (?:"(.*?)" )?with (?:a|the) title(?: "(.*?)")?$/) do |body, title|
   body ||= "Any text."
   title ||= "Any Title"
-  fill_in :text_title, with: title
+  fill_in :topic_name, with: title
   fill_in :text_body, with: body
   click_on I18n.t('initiatives.show.create_text')
 end

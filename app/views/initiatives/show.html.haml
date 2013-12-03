@@ -23,23 +23,24 @@
   %div.container
     %div.content-bubble.col-md-6
       %h3= t('.captions.mailings')
-      %ul#texts
-        - @initiative.texts.each do |text|
+      %ul#topics
+        - @initiative.topics.each do |topic|
           %li
             %span.glyphicon.glyphicon-envelope
-            %span= text.author.email + ": " + text.title
+            %span= topic.head.author.email + ": " + topic.name
             %span.glyphicon.glyphicon-collapse-down.pull-right
-            %div.preview-mail= text.body
-            %div{id: "text#{text.id}"}
-            = link_to "Text holen", initiative_text_path(@initiative, text), remote: true
+            %div.preview-mail= topic.head.body
+            %div{id: "topic#{topic.id}"}
+            = link_to "Text holen", initiative_topic_path(@initiative, topic), remote: true
             
 %div.container
   %div.content-bubble.col-md-6
     %h3= t('.captions.sent-mail-to-ini')
-    = form_for(@text, url: initiative_texts_path(@initiative)) do |f|
+    = form_for(@topic, url: initiative_topics_path(@initiative)) do |f|
       - unless user_signed_in?
-        = fields_for(@text.author) do |author_fields|
+        = fields_for(@user) do |author_fields|
           = author_fields.email_field :email, class: 'form-control', placeholder: t('.placeholder_mail')
-      = f.text_field :title, class: 'form-control', placeholder: t('.placeholder_title')
-      = f.text_area :body, class: 'form-control', placeholder: t('.placeholder_message')
+      = f.text_field :name, class: 'form-control', placeholder: t('.placeholder_title')
+      = fields_for(@text) do |head_fields|
+        = head_fields.text_area :body, class: 'form-control', placeholder: t('.placeholder_message')
       = f.submit t('.create_text'), class: 'btn btn-primary'

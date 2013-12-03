@@ -1,29 +1,29 @@
 require 'spec_helper'
 
-describe TextsController do
+describe TopicsController do
 
   describe "POST create" do
     let(:initiative) { Initiative.create!(name: "Test") }
-    let(:the_text) { double(Text).as_null_object }
-    let(:params) { { initiative_id: initiative.friendly_id, text: { 
-          title: "The Title",
-          body: "Any content."
-        } } }
+    let(:topic) { double(Topic).as_null_object }
+    let(:text) { double(Text).as_null_object }
+    let(:params) { { initiative_id: initiative.friendly_id, 
+        user: { email: "a@b.c" }, topic: { name: "The Title" }, 
+        text: { body: "Any content." } } }
     let(:null_object) { double('null object').as_null_object }
 
     before(:each) do
-      user_stubs(sign_in: true, persist: true, authorize: true)
-      allow(Text).to receive(:new).and_return(the_text)
-      allow(TextsMailer).to receive(:create_notification).and_return(null_object)
+      user_stubs
+      allow(Topic).to receive(:new).and_return(topic)
+      allow(Text).to receive(:new).and_return(text)
     end
 
     it "creates a new text" do
-      expect(Text).to receive(:new)
+      expect(Topic).to receive(:new)
       post :create, params
     end
 
     it "saves the text" do
-      expect(the_text).to receive(:save)
+      expect(topic).to receive(:save)
       post :create, params
     end
 
@@ -43,12 +43,12 @@ describe TextsController do
 
     context "when the text fails to save" do
       before(:each) do
-        allow(the_text).to receive(:save).and_return(false)
+        allow(topic).to receive(:save).and_return(false)
       end
 
       it "assigns @text" do
         post :create, params
-        expect(assigns[:text]).to eq(the_text)
+        expect(assigns[:topic]).to eq(topic)
       end
 
       it "renders initiatives#show" do

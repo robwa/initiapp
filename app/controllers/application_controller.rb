@@ -7,8 +7,12 @@ class ApplicationController < ActionController::Base
     params.require(:initiative).permit(:name)
   end
 
+  def topic_params
+    params.require(:topic).permit(:name)
+  end
+
   def text_params
-    params.require(:text).permit(:title, :body)
+    params.require(:text).permit(:body)
   end
 
   def user_params

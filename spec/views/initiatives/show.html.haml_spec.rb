@@ -4,12 +4,15 @@ describe "initiatives/show.html.haml" do
   let(:name) { "Test Initiative" }
   let(:initiative) { double("Initiative", name: name).as_null_object }
   let(:user) { stub_model(User) }
+  let(:text) { mock_model("Text", author: user).as_new_record.as_null_object }
+  let(:topic) { mock_model("Topic", head: text).as_new_record.as_null_object }
   
   before(:each) do
     user_stubs
     assign(:user, user)
     assign(:initiative, initiative)
-    assign(:text, mock_model("Text", author: user).as_new_record.as_null_object)
+    assign(:topic, topic)
+    assign(:text, text)
   end
 
   it "sets the initiative name as the page title" do
@@ -38,9 +41,9 @@ describe "initiatives/show.html.haml" do
 
     it "displays a form for creating a text" do
       render
-      expect(rendered).to have_selector("form[action='#{initiative_texts_path(initiative)}'][method='post']")
-      expect(rendered).to have_selector("form#new_text input#user_email")
-      expect(rendered).to have_selector("form input#text_title")
+      expect(rendered).to have_selector("form[action='#{initiative_topics_path(initiative)}'][method='post']")
+      expect(rendered).to have_selector("form#new_topic input#user_email")
+      expect(rendered).to have_selector("form input#topic_name")
       expect(rendered).to have_selector("form textarea#text_body")
     end
   end
@@ -72,8 +75,8 @@ describe "initiatives/show.html.haml" do
 
       it "displays a form for creating a text" do
         render
-        expect(rendered).to have_selector("form[action='#{initiative_texts_path(initiative)}'][method='post']")
-        expect(rendered).to have_selector("form input#text_title")
+        expect(rendered).to have_selector("form[action='#{initiative_topics_path(initiative)}'][method='post']")
+        expect(rendered).to have_selector("form input#topic_name")
         expect(rendered).to have_selector("form textarea#text_body")
       end
     end
@@ -93,15 +96,15 @@ describe "initiatives/show.html.haml" do
         expect(rendered).to have_selector("ul#members")
       end
 
-      it "displays a list of texts" do
+      it "displays a list of topics" do
         render
-        expect(rendered).to have_selector("ul#texts")
+        expect(rendered).to have_selector("ul#topics")
       end
 
       it "displays a form for creating a text" do
         render
-        expect(rendered).to have_selector("form[action='#{initiative_texts_path(initiative)}'][method='post']")
-        expect(rendered).to have_selector("form input#text_title")
+        expect(rendered).to have_selector("form[action='#{initiative_topics_path(initiative)}'][method='post']")
+        expect(rendered).to have_selector("form input#topic_name")
         expect(rendered).to have_selector("form textarea#text_body")
       end
     end

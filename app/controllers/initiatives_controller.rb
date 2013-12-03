@@ -22,7 +22,8 @@ class InitiativesController < ApplicationController
   def show
     @initiative = Initiative.friendly.find(params[:id])
     @user = User.new
-    @text = Text.new(author: @user)
+    @topic = Topic.new
+    @text = Text.new
   end
 
   # POST /initiative
@@ -35,7 +36,8 @@ class InitiativesController < ApplicationController
       redirect_to @initiative, notice: t('notifications.models.user.join')
     else
       @user ||= User.new(email: user_params[:email])
-      @text = Text.new(author: @user)
+      @topic = Topic.new
+      @text = Text.new
       flash.now[:alert] = t('errors.models.user.create')
       render :show
     end
