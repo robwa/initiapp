@@ -8,6 +8,10 @@ class TextsController < ApplicationController
     @text.author = current_user
 
     if @text.save
+      users = @topic.authors + @initiative.members
+      users.uniq.each do |user|
+        TextsMailer.create(@text, user).deliver unless current_user.id == user.id
+      end
       flash[:notice] = t('notifications.models.text.saved')
       redirect_to initiative_topic_url(@initiative, @topic)
     else
