@@ -29,6 +29,9 @@ de:
     application:
       sign_in: Anmelden
       sign_out: Abmelden
+  topics:
+    show:
+      create_text: Antworten
   users:
     confirmations:
       show:

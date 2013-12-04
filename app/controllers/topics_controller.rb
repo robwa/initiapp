@@ -29,6 +29,7 @@ class TopicsController < ApplicationController
   def show
     @initiative = Initiative.friendly.find(params[:initiative_id])
     @topic = Topic.find(params[:id])
+    @text = Text.new
   end
 
 end

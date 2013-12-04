@@ -5,3 +5,7 @@
 %ul#texts
   - @topic.texts.each do |text|
     %li= text.author.email + ": " + text.body
+
+= form_for @text, url: initiative_topic_texts_path(@initiative, @topic) do |f|
+  = f.text_area :body
+  = f.submit t('.create_text')

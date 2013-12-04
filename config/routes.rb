@@ -7,9 +7,15 @@ Initiapp::Application.routes.draw do
 
   # /...
   resources :initiatives, path: '', only: [:index, :create, :show] do
+    
     # /...
     post '', action: :join, as: :join, on: :member
+    
     # /.../topics
-    resources :topics, only: [:create, :show]
+    resources :topics, only: [:create, :show] do
+      
+      # /.../topics/.../texts
+      resources :texts, only: [:create]
+    end
   end
 end
