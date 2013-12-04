@@ -4,10 +4,12 @@ require 'spec_helper'
 describe "topics/show.html.haml" do
   let(:initiative) { double(Initiative, name: "Test Initiative") }
   let(:topic) { double(Topic, name: "Whatever topic").as_null_object }
+  let(:text) { stub_model(Text) }
 
   before(:each) do
     assign(:initiative, initiative)
     assign(:topic, topic)
+    assign(:text, text)
   end
 
   it "sets the initiative and topic name as the page title" do
