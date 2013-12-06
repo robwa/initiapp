@@ -10,6 +10,7 @@ gem 'haml-rails'
 gem 'friendly_id'
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'cancan'
 
 group :test do
   gem 'rspec-rails', group: :development
