@@ -10,11 +10,15 @@ describe TopicsController do
         user: { email: "a@b.c" }, topic: { name: "The Title" }, 
         text: { body: "Any content." } } }
     let(:null_object) { double('null object').as_null_object }
+    let(:ability) { Ability.new(nil, nil) }
 
     before(:each) do
       user_stubs
       allow(Topic).to receive(:new).and_return(topic)
       allow(Text).to receive(:new).and_return(text)
+
+      allow(controller).to receive(:current_ability).and_return(ability)
+      allow(ability).to receive(:can?).and_return(true)
     end
 
     it "creates a new text" do

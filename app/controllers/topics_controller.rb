@@ -1,11 +1,12 @@
 class TopicsController < ApplicationController
+  before_action :create_topic, only: :create
+  load_and_authorize_resource
 
   # POST /initiative/topics
   def create
     @initiative = Initiative.friendly.find(params[:initiative_id])
     @user = find_or_create_actable_user
 
-    @topic = Topic.new(topic_params)
     @topic.initiative = @initiative
 
     @text = Text.new(text_params)
@@ -24,12 +25,16 @@ class TopicsController < ApplicationController
     end
   end
 
-
   # GET /initiative/topics/1
   def show
     @initiative = Initiative.friendly.find(params[:initiative_id])
-    @topic = Topic.find(params[:id])
     @text = Text.new
   end
 
+
+  private
+
+  def create_topic
+    @topic = Topic.new(topic_params)
+  end
 end
