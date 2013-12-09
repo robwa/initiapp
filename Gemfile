@@ -12,6 +12,7 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'cancan'
 gem 'mailman-rails'
+gem 'mailman', github: 'titanous/mailman'
 
 group :test do
   gem 'rspec-rails', group: :development
