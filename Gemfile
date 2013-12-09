@@ -11,6 +11,7 @@ gem 'friendly_id'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'cancan'
+gem 'mailman-rails'
 
 group :test do
   gem 'rspec-rails', group: :development
