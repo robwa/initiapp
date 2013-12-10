@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Text do
   before(:each) do
-    @text = Text.new(body: "Test")
+    @text = Text.new(body: "Test", topic: Topic.new, author: User.new)
   end
 
   it "is valid with valid attributes" do

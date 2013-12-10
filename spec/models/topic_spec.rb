@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Topic do
   before(:each) do
-    @topic = Topic.new(name: "Test")
+    @topic = Topic.new(name: "Test", initiative: Initiative.new)
   end
 
   it "is valid with valid attributes" do

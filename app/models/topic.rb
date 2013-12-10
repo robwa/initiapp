@@ -3,7 +3,8 @@ class Topic < ActiveRecord::Base
   has_many :texts
   has_many :authors, through: :texts
 
-  validates_presence_of :name
+  validates :name, presence: true
+  validates :initiative, presence: true
 
   def head
     texts.first

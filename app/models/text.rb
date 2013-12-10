@@ -3,5 +3,7 @@ class Text < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   has_one :initiative, through: :topic
 
-  validates_presence_of :body
+  validates :body, presence: true
+  validates :topic, presence: true
+  validates :author, presence: true
 end
