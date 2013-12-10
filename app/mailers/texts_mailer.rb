@@ -5,6 +5,8 @@ class TextsMailer < ActionMailer::Base
     unless @text.id == @text.topic.head.id
       subject.prepend("Re: ")
     end
-    mail(to: user.email, subject: subject)
+    
+    domain = ActionMailer::Base::default[:from].split('@').last
+    mail(from: "#{@text.topic.id}@#{domain}", to: user.email, subject: subject)
   end
 end
