@@ -1,4 +1,3 @@
 Mailman::Rails.receive do
-  #to '%id%@%domain%', TextsMailer
-  to /.*/, DefaultMailer
+  to '%id%@%domain%', 'TextsMailController#create'
 end
