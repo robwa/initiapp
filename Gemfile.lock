@@ -96,7 +96,7 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     ffi (1.9.3)
-    friendly_id (5.0.1)
+    friendly_id (5.0.2)
       activerecord (~> 4.0.0)
     gherkin (2.12.2)
       multi_json (~> 1.3)
