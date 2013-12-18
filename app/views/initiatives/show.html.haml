@@ -31,9 +31,9 @@
               = topic.head.author.email + ": "
               = link_to topic.name, initiative_topic_path(@initiative, topic)
             %span.glyphicon.glyphicon-collapse-down.pull-right
-            %div.preview-mail= topic.head.body
-            %div{id: "topic#{topic.id}"}
-            = link_to "Text holen", initiative_topic_path(@initiative, topic), remote: true
+            %div.preview-mail= topic.head.body.first(140)
+            /%div{id: "topic#{topic.id}"}
+            /= link_to "Text holen", initiative_topic_path(@initiative, topic), remote: true
             
 %div.container
   %div.content-bubble.col-md-6
