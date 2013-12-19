@@ -7,6 +7,6 @@ class TextsMailer < ActionMailer::Base
     end
     
     domain = ActionMailer::Base::default[:from].split('@').last
-    mail(from: "#{@text.topic.id}@#{domain}", to: user.email, subject: subject)
+    mail(reply_to: "#{@text.topic.id}@#{domain}", to: user.email, subject: subject)
   end
 end
