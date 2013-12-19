@@ -52,9 +52,9 @@ Then /^I should be an? (passive|active) user$/ do |state|
 end
 
 Then(/^I am signed in as "(.*)"$/) do |user|
-  expect(page).to have_selector 'ul#user', text: user
+  expect(page).to have_selector '#user-control', text: user
 end
 
 Then(/^I am not signed in$/) do
-  expect(page).to have_selector 'ul#user', text: I18n.t('layouts.application.sign_in')
+  expect(page).to have_selector '#user-control', text: I18n.t('layouts.application.sign_in')
 end

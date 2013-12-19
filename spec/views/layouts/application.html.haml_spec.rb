@@ -22,7 +22,7 @@ describe 'layouts/application.html.haml' do
     it "displays the email address" do
       user_stubs(sign_in: true, email: "test@address.email")
       render
-      expect(rendered).to have_selector "ul#user", text: "test@address.email"
+      expect(rendered).to have_selector "#user-control", text: "test@address.email"
     end
 
     it "shows a sign out link" do

@@ -13,20 +13,14 @@
           %a{href: '/'}
             %img{src: '/ini_logo_02.png', alt: 'initiative logo'}
         //%h3#ini-name= @initiative.name
-        %div#user-control.btn-group.pull-right
-          %button.btn.btn-default.dd-capt{type: 'button'} user
-          %button.btn.btn-default.dropdown-toggle{type: 'button', data: {toggle: 'dropdown'} }
-            %span.caret
-            %span.sr-only
-          %ul#user.dropdown-menu{role: 'menu'}
-            - if user_signed_in?
-              %li= current_user.email
-              %li.divider
-              %li= link_to t('.sign_out'), destroy_user_session_path, method: :delete
-            - else
-              %li.divider
-              %li= link_to t('.sign_in'), new_user_session_path
-
+        %div#user-control.pull-right
+          - unless user_signed_in?
+            = link_to t('.sign_in'), new_user_session_path
+          - else
+            = current_user.email
+            (
+            %span>= link_to(t('.sign_out'), destroy_user_session_path, method: :delete)
+            )
       %div#main-content.row
         - msgs = flash.select { |k,v| [:alert, :notice].include?(k) }
         - msgs.each do |type, msg|
