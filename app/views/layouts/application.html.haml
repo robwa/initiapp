@@ -28,9 +28,11 @@
               %li= link_to t('.sign_in'), new_user_session_path
 
       %div#main-content.row
-        - flash.each do |name, message|
-          %div.alert.alert-info.alert-dismissable
+        - msgs = flash.select { |k,v| [:alert, :notice].include?(k) }
+        - msgs.each do |type, msg|
+          - map = { notice: 'info', alert: 'danger' }
+          %div{class: "alert alert-#{map[type]} alert-dismissable"}
             %button.close{type: 'button', data: {dismiss: 'alert'}}x
-            = content_tag :span, message, class: name
+            = content_tag :span, msg
         %div#inner-content.container  
           = yield
