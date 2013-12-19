@@ -1,4 +1,8 @@
 de:
+  activerecord:
+    attributes:
+      user:
+        password: Kennwort
   devise:
     mailer:
       confirmation_instructions:
@@ -36,6 +40,9 @@ de:
     confirmations:
       show:
         confirm: Benutzerkonto bestätigen
+        hint: Bitte wähle ein neues Kennwort und gib es zur Sicherheit zweimal ein.
+        password: Kennwort
+        password_confirmation: Kennwort wiederholen
     mailer:
       confirmation_instructions:
         account: Du hast unter Deiner E-Mail-Adresse <%{email}> ein passives Benutzerkonto angelegt.

@@ -1,6 +1,10 @@
+- title t('.confirm')
+
+%p= t('.hint')
+
 = form_for(resource, as: resource_name, url: confirm_user_confirmation_path, method: :patch) do |f|
   = devise_error_messages!
   = hidden_field_tag :confirmation_token, resource.confirmation_token
-  = f.password_field :password
-  = f.password_field :password_confirmation
+  = f.password_field :password, placeholder: t('.password')
+  = f.password_field :password_confirmation, placeholder: t('.password_confirmation')
   = f.submit t ".confirm"

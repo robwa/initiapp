@@ -1,7 +1,16 @@
 de:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: ist zu kurz!
   devise:
     confirmations:
       unconfirmed: Benutzerkonto konnte nicht bestätigt werden!
+      user:
+        confirmed: Benutzerkonto wurde bestätigt.
     sessions:
       user:
         signed_in: Erfolgreich angemeldet
@@ -9,6 +18,7 @@ de:
   errors:
     messages:
       blank: muss angegeben werden
+      not_saved: Nicht gespeichert
       record_invalid: Ungültiger Datensatz
     models:
       initiative:
